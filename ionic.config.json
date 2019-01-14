@@ -1,5 +1,7 @@
 {
   "name": "ShareAce",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
