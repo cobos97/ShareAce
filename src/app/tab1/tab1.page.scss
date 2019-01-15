@@ -2,3 +2,28 @@
   max-height: 35vh;
   overflow: hidden;
 }
+
+/* la "rayita" que indica la navegación entre slides */
+.SwipedTabs-indicatorSegment{
+  -webkit-transition: 0s all;
+  -moz-transition:  0s all;
+  -o-transition:  0s all;
+  transition:  0s all;
+  transform-origin: left 0;
+  height: 2px;
+  position: relative;
+  top: -2px;
+  background-color: var(--ion-color-primary) !important;
+}
+.button-native{
+  padding:0px !important;
+}
+
+ion-slide.swiper-slide {
+  display:block;
+}
+.slides{
+  height: 100%;
+}
+
+
