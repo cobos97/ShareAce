@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <ion-button (click)="dismiss()">
+          <ion-icon name="arrow-round-back" slot="icon-only" style="color:var(--ion-color-primary-contrast)"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+    <ion-title>
+      Nueva oferta
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="nueva" (ngSubmit)="logForm()">
+    <!--
+    <ion-item>
+      <ion-label>Elige uno: </ion-label>
+      <ion-select formControlName="tipo">
+        <ion-select-option>Individual</ion-select-option>
+        <ion-select-option>Dobles</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Plazas</ion-label>
+      <ion-item formControlName="plazas" type="number"></ion-item>
+    </ion-item>
+    -->
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-input formControlName="tipo" type="text" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-textarea formControlName="plazas" ></ion-textarea>
+    </ion-item>
+    <ion-button shape="round" color="primary" fill="outline" type="submit" [disabled]="!nueva.valid">
+      Guardar
+    </ion-button>
+  </form>
+</ion-content>
