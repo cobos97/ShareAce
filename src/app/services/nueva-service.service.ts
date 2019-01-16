@@ -17,4 +17,8 @@ export class NuevaServiceService {
         return this.myCollection.add(datos);
     }
 
+    leeOfertas() {
+        return this.myCollection.get();
+    }
+
 }

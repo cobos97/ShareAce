@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content padding>
-<form [formGroup]="nuevaOferta" (ngSubmit)="logForm()">
+<form [formGroup]="nueva" (ngSubmit)="logForm()">
   <ion-item>
     <ion-label>Elige uno: </ion-label>
     <ion-select formControlName="tipo">
@@ -25,6 +25,10 @@
   <ion-item>
     <ion-label>Número de plazas: </ion-label>
     <ion-input type="number" formControlName="plazas"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Fecha: </ion-label>
+    <ion-input type="date" formControlName="fecha"></ion-input>
   </ion-item>
   <ion-item float-right="">
     <ion-button shape="round" color="primary" fill="outline" type="submit">

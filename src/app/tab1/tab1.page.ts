@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {IonInfiniteScroll, IonSlides, ModalController} from '@ionic/angular';
+import {AlertController, IonInfiniteScroll, IonSlides, LoadingController, ModalController} from '@ionic/angular';
 import {ModalNuevaPage} from '../modals/modal-nueva/modal-nueva.page';
+import {NuevaServiceService} from '../services/nueva-service.service';
 
 @Component({
     selector: 'app-tab1',
@@ -10,29 +11,76 @@ import {ModalNuevaPage} from '../modals/modal-nueva/modal-nueva.page';
 export class Tab1Page implements OnInit {
     @ViewChild('SwipedTabsSlider') private SwipedTabsSlider: IonSlides;
     @ViewChild('infiniteScroll') ionInfiniteScroll: IonInfiniteScroll;
+    @ViewChild('dynamicList') dynamicList;
+
+    listado = [];
+    listadoPanel = [];
 
     SwipedTabsIndicator: any = null;
     tabs = ['selectTab(0)', 'selectTab(1)'];
     ntabs = 2;
     private category: any;
-    private cloud: any;
 
-    constructor(private modalControler: ModalController) {
+    constructor(private modalControler: ModalController,
+                private nuevaS: NuevaServiceService,
+                public loadingController: LoadingController,
+                private controlerAceptar: AlertController,
+                private alertCtrl: AlertController) {
+        this.initializeItems();
     }
 
     ngOnInit() {
     }
 
+    /* Analizar el ciclo de vida de los componentes: justo cuando se hace activa */
+    ionViewDidEnter() {
+        this.SwipedTabsIndicator = document.getElementById('indicator');
+        this.presentLoading('Cargando');
+        this.nuevaS.leeOfertas()
+            .subscribe((querySnapshot) => {
+                this.listado = [];
+                this.delete();
+                querySnapshot.forEach((doc) => {
+// doc.data() is never undefined for query doc snapshots
+// console.log(doc.id, " => ", doc.data());
+                    this.listado.push({id: doc.id, ...doc.data()});
+                });
+// console.log(this.listado);
+                this.listadoPanel = this.listado;
+                this.loadingController.dismiss();
+            });
+    }
+    /* Esta función es llamada por el componente Refresher de IONIC v4 */
+    doRefresh(refresher) {
+        this.nuevaS.leeOfertas()
+            .subscribe(querySnapshot => {
+                this.listado = [];
+                this.delete();
+                /* Es un hack para solucionar un bug con el refresher y las listas
+               dinámicas (ngFor) */
+                querySnapshot.forEach((doc) => {
+                    this.listado.push({id: doc.id, ...doc.data()});
+                });
+                this.listadoPanel = this.listado;
+                refresher.target.complete();
+            });
+    }
+
+    async delete() { // para solucionar el tema de list-items-sliding con ngfor
+        await this.dynamicList.closeSlidingItems();
+    }
+
+    initializeItems() {
+        this.listadoPanel = this.listado;
+    }
+
     async nuevaOfertaModal() {
-        const modal = await  this.modalControler.create({
+        const modal = await this.modalControler.create({
             component: ModalNuevaPage
         });
         await modal.present();
     }
 
-    ionViewDidEnter() {
-        this.SwipedTabsIndicator = document.getElementById('indicator');
-    }
 
     ionViewWillEnter() {
         this.category = '0';
@@ -47,11 +95,11 @@ export class Tab1Page implements OnInit {
             this.category = dat;
             this.category = +this.category; // to int;
             if (this.category == 1) {
-                if (this.cloud.isInfinityScrollEnabled()) {
-                    this.ionInfiniteScroll.disabled = false;
-                } else {
+                // if (this.cloud.isInfinityScrollEnabled()) {
+                //    this.ionInfiniteScroll.disabled = false;
+                // } else {
                     this.ionInfiniteScroll.disabled = true;
-                }
+                // }
             } else {
                 this.ionInfiniteScroll.disabled = false;
             }
@@ -74,6 +122,13 @@ export class Tab1Page implements OnInit {
             this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' +
                 ((e.target.swiper.progress * (this.ntabs - 1)) * 100) + '%,0,0)';
         }
+    }
+
+    async presentLoading(msg) {
+        const myloading = await this.loadingController.create({
+            message: msg
+        });
+        return await myloading.present();
     }
 
 }

@@ -19,7 +19,8 @@ export class ModalNuevaPage implements OnInit {
                 private nuevaS: NuevaServiceService) {
         this.nueva = this.formBuilder.group({
             tipo: ['', Validators.required],
-            plazas: ['']
+            plazas: [''],
+            fecha: ['', Validators.required]
         });
         console.log('Constructor');
     }
@@ -31,10 +32,12 @@ export class ModalNuevaPage implements OnInit {
         console.log('Entra');
         const data = {
             tipo: this.nueva.get('tipo').value,
-            plazas: this.nueva.get('plazas').value
+            plazas: this.nueva.get('plazas').value,
+            fecha: this.nueva.get('fecha').value
         };
         console.log('Tipo: ' + data.tipo);
         console.log('Plazas: ' + data.plazas);
+        console.log('Fecha: ' + data.fecha);
         /* Mostramos el cargando... */
         this.myLoading = this.presentLoading();
         this.nuevaS.agregaOferta(data)
@@ -43,10 +46,12 @@ export class ModalNuevaPage implements OnInit {
                 /* Ponemos en blanco los campos del formulario*/
                 this.nueva.setValue({
                     tipo: '',
-                    plazas: ''
+                    plazas: '',
+                    fecha: ''
                 });
                 /* Cerramos el cargando...*/
                 this.loadingController.dismiss();
+                this.modalController.dismiss();
                 /*Podríamos ir a la página de listado*/
                 // this.router.navigateByUrl('/tabs/(tab1:tab1)');
             })
