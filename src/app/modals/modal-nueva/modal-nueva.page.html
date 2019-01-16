@@ -14,30 +14,22 @@
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]="nueva" (ngSubmit)="logForm()">
-    <!--
-    <ion-item>
-      <ion-label>Elige uno: </ion-label>
-      <ion-select formControlName="tipo">
-        <ion-select-option>Individual</ion-select-option>
-        <ion-select-option>Dobles</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>Plazas</ion-label>
-      <ion-item formControlName="plazas" type="number"></ion-item>
-    </ion-item>
-    -->
-    <ion-item>
-      <ion-label>Tipo</ion-label>
-      <ion-input formControlName="tipo" type="text" ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Description</ion-label>
-      <ion-textarea formControlName="plazas" ></ion-textarea>
-    </ion-item>
-    <ion-button shape="round" color="primary" fill="outline" type="submit" [disabled]="!nueva.valid">
-      Guardar
+<form [formGroup]="nuevaOferta" (ngSubmit)="logForm()">
+  <ion-item>
+    <ion-label>Elige uno: </ion-label>
+    <ion-select formControlName="tipo">
+      <ion-select-option [value]="individual">Individual</ion-select-option>
+      <ion-select-option [value]="dobles">Dobles</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Número de plazas: </ion-label>
+    <ion-input type="number" formControlName="plazas"></ion-input>
+  </ion-item>
+  <ion-item float-right="">
+    <ion-button shape="round" color="primary" fill="outline" type="submit">
+      Finalizar
     </ion-button>
-  </form>
+  </ion-item>
+</form>
 </ion-content>
