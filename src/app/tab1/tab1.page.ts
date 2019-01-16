@@ -8,13 +8,12 @@ import {ModalNuevaPage} from '../modals/modal-nueva/modal-nueva.page';
     styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-    @ViewChild('SwipedTabsSlider') private _SwipedTabsSlider: IonSlides;
+    @ViewChild('SwipedTabsSlider') private SwipedTabsSlider: IonSlides;
     @ViewChild('infiniteScroll') ionInfiniteScroll: IonInfiniteScroll;
 
     SwipedTabsIndicator: any = null;
     tabs = ['selectTab(0)', 'selectTab(1)'];
     ntabs = 2;
-    private SwipedTabsSlider: any;
     private category: any;
     private cloud: any;
 
@@ -61,7 +60,7 @@ export class Tab1Page implements OnInit {
 
     /* El método que permite actualizar el indicado cuando se cambia de slide*/
     updateIndicatorPosition() {
-        this._SwipedTabsSlider.getActiveIndex().then(i => {
+        this.SwipedTabsSlider.getActiveIndex().then(i => {
             if (this.ntabs > i) {  // this condition is to avoid passing to incorrect index
                 this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' + (i * 100) + '%,0,0)';
             }

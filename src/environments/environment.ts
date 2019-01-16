@@ -11,7 +11,7 @@ export const environment = {
     projectId: "shareace-8d72b",
     storageBucket: "shareace-8d72b.appspot.com",
     messagingSenderId: "793910168939",
-    ofertasColeccion: "ofertas"
+    ofertasColeccion: 'ofertas'
   }
 
 };

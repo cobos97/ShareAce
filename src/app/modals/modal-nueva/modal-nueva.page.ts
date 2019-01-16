@@ -10,14 +10,61 @@ import {NuevaServiceService} from '../../services/nueva-service.service';
 })
 export class ModalNuevaPage implements OnInit {
 
-    private nueva: any;
+    private nueva: FormGroup;
+    private myLoading: any;
 
     constructor(private modalController: ModalController,
-                private formBuilder: FormBuilder) {
+                private formBuilder: FormBuilder,
+                private loadingController: LoadingController,
+                private nuevaS: NuevaServiceService) {
         this.nueva = this.formBuilder.group({
-            tipo: [''],
+            tipo: ['', Validators.required],
             plazas: ['']
         });
+        console.log('Constructor');
+    }
+
+    /* Se ejecuta al submit el formulario. Crea un objeto proveniente del formulario (sería
+    igual que this.todo.value) y llama a la función agregaNota del servicio. Gestiona la
+    Promise para sincronizar la interfaz. */
+    logForm() {
+        console.log('Entra');
+        const data = {
+            tipo: this.nueva.get('tipo').value,
+            plazas: this.nueva.get('plazas').value
+        };
+        console.log('Tipo: ' + data.tipo);
+        console.log('Plazas: ' + data.plazas);
+        /* Mostramos el cargando... */
+        this.myLoading = this.presentLoading();
+        this.nuevaS.agregaOferta(data)
+            .then((docRef) => {
+                console.log('ID insertado (por si lo necesitamos para algo...): ', docRef.id);
+                /* Ponemos en blanco los campos del formulario*/
+                this.nueva.setValue({
+                    tipo: '',
+                    plazas: ''
+                });
+                /* Cerramos el cargando...*/
+                this.loadingController.dismiss();
+                /*Podríamos ir a la página de listado*/
+                // this.router.navigateByUrl('/tabs/(tab1:tab1)');
+            })
+            .catch((error) => {
+                console.error('Error insertando documento: ', error);
+                /* Cerramos el cargando...*/
+                this.loadingController.dismiss();
+                /* Mostramos un mensaje de error */
+                /* A desarrollar, se aconseja emplear un componente denominado toast */
+            });
+    }
+
+    /* Es un componente de la interfaz IONIC v4 */
+    async presentLoading() {
+        this.myLoading = await this.loadingController.create({
+            message: 'Guardando'
+        });
+        return await this.myLoading.present();
     }
 
     ngOnInit() {

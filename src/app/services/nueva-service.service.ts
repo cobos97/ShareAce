@@ -13,7 +13,7 @@ export class NuevaServiceService {
             fireStore.collection<any>(environment.firebaseConfig.ofertasColeccion);
     }
 
-    agregaNota(datos) {
+    agregaOferta(datos) {
         return this.myCollection.add(datos);
     }
 
