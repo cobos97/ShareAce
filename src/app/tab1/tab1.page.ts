@@ -36,6 +36,18 @@ export class Tab1Page implements OnInit {
     ionViewDidEnter() {
         this.SwipedTabsIndicator = document.getElementById('indicator');
         this.presentLoading('Cargando');
+        this.nuevaS.leeOfertas().then(
+            querySnapshot => {
+                this.listado = [];
+                this.delete();
+                querySnapshot.forEach((doc) => {
+                    this.listado.push({id: doc.id, ...doc.data()});
+                });
+                this.listadoPanel = this.listado;
+                this.loadingController.dismiss();
+            }
+        );
+        /*
         this.nuevaS.leeOfertas()
             .subscribe((querySnapshot) => {
                 this.listado = [];
@@ -49,22 +61,38 @@ export class Tab1Page implements OnInit {
                 this.listadoPanel = this.listado;
                 this.loadingController.dismiss();
             });
+            */
     }
 
     /* Esta función es llamada por el componente Refresher de IONIC v4 */
     doRefresh(refresher) {
+        this.nuevaS.leeOfertas().then(
+            querySnapshot => {
+                this.listado = [];
+                this.delete();
+                querySnapshot.forEach((doc) => {
+                    this.listado.push({id: doc.id, ...doc.data()});
+                });
+                this.listadoPanel = this.listado;
+                refresher.target.complete();
+            }
+        );
+        /*
         this.nuevaS.leeOfertas()
             .subscribe(querySnapshot => {
                 this.listado = [];
                 this.delete();
+                */
                 /* Es un hack para solucionar un bug con el refresher y las listas
                dinámicas (ngFor) */
+                /*
                 querySnapshot.forEach((doc) => {
                     this.listado.push({id: doc.id, ...doc.data()});
                 });
                 this.listadoPanel = this.listado;
                 refresher.target.complete();
             });
+            */
     }
 
     async delete() { // para solucionar el tema de list-items-sliding con ngfor

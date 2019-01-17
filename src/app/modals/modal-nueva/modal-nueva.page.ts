@@ -19,7 +19,7 @@ export class ModalNuevaPage implements OnInit {
                 private nuevaS: NuevaServiceService) {
         this.nueva = this.formBuilder.group({
             tipo: ['', Validators.required],
-            plazas: [''],
+            plazas: ['', Validators.required],
             fecha: ['', Validators.required]
         });
         console.log('Constructor');

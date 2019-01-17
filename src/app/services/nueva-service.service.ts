@@ -18,7 +18,8 @@ export class NuevaServiceService {
     }
 
     leeOfertas() {
-        return this.myCollection.get();
+        return this.myCollection.ref.orderBy('fecha').get();
     }
+
 
 }

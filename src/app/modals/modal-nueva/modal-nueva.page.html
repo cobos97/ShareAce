@@ -33,7 +33,7 @@
             <ion-input type="date" formControlName="fecha"></ion-input>
         </ion-item>
         <ion-item float-right="">
-            <ion-button shape="round" color="primary" fill="outline" type="submit">
+            <ion-button shape="round" color="primary" fill="outline" type="submit" [disabled]="!nueva.valid">
                 Aceptar
             </ion-button>
         </ion-item>
