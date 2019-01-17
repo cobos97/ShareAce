@@ -50,6 +50,7 @@ export class Tab1Page implements OnInit {
                 this.loadingController.dismiss();
             });
     }
+
     /* Esta función es llamada por el componente Refresher de IONIC v4 */
     doRefresh(refresher) {
         this.nuevaS.leeOfertas()
@@ -79,6 +80,27 @@ export class Tab1Page implements OnInit {
             component: ModalNuevaPage
         });
         await modal.present();
+
+        await modal.onDidDismiss()
+            .then(response => {
+                this.nuevaS.leeOfertas()
+                    .subscribe(querySnapshot => {
+                        this.listado = [];
+                        this.delete();
+                        /* Es un hack para solucionar un bug con el refresher y las listas
+                       dinámicas (ngFor) */
+                        querySnapshot.forEach((doc) => {
+                            this.listado.push({id: doc.id, ...doc.data()});
+                        });
+                        this.listadoPanel = this.listado;
+                    });
+
+                // this.mostarConfirmacion();
+
+            })
+            .catch(response => {
+                console.log('Error');
+            });
     }
 
 
@@ -98,7 +120,7 @@ export class Tab1Page implements OnInit {
                 // if (this.cloud.isInfinityScrollEnabled()) {
                 //    this.ionInfiniteScroll.disabled = false;
                 // } else {
-                    this.ionInfiniteScroll.disabled = true;
+                this.ionInfiniteScroll.disabled = true;
                 // }
             } else {
                 this.ionInfiniteScroll.disabled = false;
@@ -130,5 +152,25 @@ export class Tab1Page implements OnInit {
         });
         return await myloading.present();
     }
+
+    /*
+    async mostarConfirmacion() {
+        const mensaje = await this.alertCtrl.create({
+            header: 'Exito',
+            message: 'Operación realizada con exito',
+            buttons: [
+                {
+                    text: 'Aceptar',
+                    handler: () => {
+                        console.log('Aceptar clicked');
+                    }
+                }
+            ]
+        });
+
+        await mensaje.present();
+
+    }
+    */
 
 }

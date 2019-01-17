@@ -1,39 +1,47 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-toggle>
-        <ion-button (click)="dismiss()">
-          <ion-icon name="arrow-round-back" slot="icon-only" style="color:var(--ion-color-primary-contrast)"></ion-icon>
-        </ion-button>
-      </ion-menu-toggle>
-    </ion-buttons>
-    <ion-title>
-      Nueva oferta
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <!--
+        <ion-buttons slot="start">
+          <ion-menu-toggle>
+            <ion-button (click)="dismiss()">
+              <ion-icon name="arrow-round-back" slot="icon-only" style="color:var(--ion-color-primary-contrast)"></ion-icon>
+            </ion-button>
+          </ion-menu-toggle>
+        </ion-buttons>
+        -->
+        <ion-title>
+            Nueva oferta
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-<form [formGroup]="nueva" (ngSubmit)="logForm()">
-  <ion-item>
-    <ion-label>Elige uno: </ion-label>
-    <ion-select formControlName="tipo">
-      <ion-select-option [value]="individual">Individual</ion-select-option>
-      <ion-select-option [value]="dobles">Dobles</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label>Número de plazas: </ion-label>
-    <ion-input type="number" formControlName="plazas"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Fecha: </ion-label>
-    <ion-input type="date" formControlName="fecha"></ion-input>
-  </ion-item>
-  <ion-item float-right="">
-    <ion-button shape="round" color="primary" fill="outline" type="submit">
-      Finalizar
-    </ion-button>
-  </ion-item>
-</form>
+    <form [formGroup]="nueva" (ngSubmit)="logForm()">
+        <ion-item>
+            <ion-label>Elige uno:</ion-label>
+            <ion-select formControlName="tipo">
+                <ion-select-option [value]="individual">Individual</ion-select-option>
+                <ion-select-option [value]="dobles">Dobles</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Número de plazas:</ion-label>
+            <ion-input type="number" formControlName="plazas"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Fecha:</ion-label>
+            <ion-input type="date" formControlName="fecha"></ion-input>
+        </ion-item>
+        <ion-item float-right="">
+            <ion-button shape="round" color="primary" fill="outline" type="submit">
+                Aceptar
+            </ion-button>
+        </ion-item>
+        <ion-item float-right="">
+            <ion-button shape="round" color="primary" fill="outline" (click)="dismiss()">
+                Cancelar
+            </ion-button>
+        </ion-item>
+
+    </form>
 </ion-content>
