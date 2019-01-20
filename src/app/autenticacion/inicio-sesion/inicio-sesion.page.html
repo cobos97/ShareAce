@@ -10,8 +10,24 @@
 
   <h1 align="center">ShareAce</h1>
 
+  <form [formGroup]="inicioForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label>Email: </ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Contraseña: </ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <ion-item float-right="">
+      <ion-button shape="round" color="primary" fill="outline" type="submit">
+        Iniciar sesión
+      </ion-button>
+    </ion-item>
+  </form>
+
   <ion-button float-right="" [routerLink]="'/registro'">
-    Registrarse
+    Ir al registro
   </ion-button>
 
 </ion-content>

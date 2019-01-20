@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { AutenticationService } from '../../services/autentication.service';
+import {AutenticationService} from '../../services/autentication.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-registro',
@@ -13,7 +14,8 @@ export class RegistroPage implements OnInit {
     userdata: any;
 
     constructor(private formBuilder: FormBuilder,
-                private authService: AutenticationService) {
+                private authService: AutenticationService,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -40,8 +42,10 @@ export class RegistroPage implements OnInit {
     onSubmit() {
         this.userdata = this.saveUserdata();
         this.authService.registroUsuario(this.userdata)
-            .then()
-            .catch( e => { console.log(e); } );
+            .then(() => this.router.navigateByUrl('/inicio-sesion'))
+            .catch(e => {
+                console.log(e);
+            });
     }
 
     saveUserdata() {
