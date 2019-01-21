@@ -35,7 +35,7 @@ export class InicioSesionPage implements OnInit {
     onSubmit() {
         this.userdata = this.saveUserdata();
         this.authService.inicioSesionUsuario(this.userdata)
-            .then(() => this.router.navigateByUrl('/home'))
+            .then(() => this.router.navigateByUrl('/tabs/tabs/tab1'))
             .catch(e => {
                 console.log(e);
             });

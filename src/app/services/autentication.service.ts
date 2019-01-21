@@ -9,7 +9,8 @@ export class AutenticationService {
     constructor() {
         firebase.initializeApp({
             apiKey: 'AIzaSyDFcO1MSqbn0t-DwDgBcAddabqNFeplbro',
-            authDomain: 'shareace-8d72b.firebaseapp.com'
+            authDomain: 'shareace-8d72b.firebaseapp.com',
+            projectId: 'shareace-8d72b'
         });
     }
 
@@ -19,5 +20,9 @@ export class AutenticationService {
 
     inicioSesionUsuario(userdata) {
         return firebase.auth().signInWithEmailAndPassword(userdata.email, userdata.password);
+    }
+
+    cerrarSesion() {
+        return firebase.auth().signOut();
     }
 }
