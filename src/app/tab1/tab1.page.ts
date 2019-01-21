@@ -3,6 +3,9 @@ import {AlertController, IonInfiniteScroll, IonSlides, LoadingController, ModalC
 import {ModalNuevaPage} from '../modals/modal-nueva/modal-nueva.page';
 import {NuevaServiceService} from '../services/nueva-service.service';
 
+import * as firebase from 'firebase';
+
+
 @Component({
     selector: 'app-tab1',
     templateUrl: 'tab1.page.html',
@@ -83,16 +86,16 @@ export class Tab1Page implements OnInit {
                 this.listado = [];
                 this.delete();
                 */
-                /* Es un hack para solucionar un bug con el refresher y las listas
-               dinámicas (ngFor) */
-                /*
-                querySnapshot.forEach((doc) => {
-                    this.listado.push({id: doc.id, ...doc.data()});
-                });
-                this.listadoPanel = this.listado;
-                refresher.target.complete();
-            });
-            */
+        /* Es un hack para solucionar un bug con el refresher y las listas
+       dinámicas (ngFor) */
+        /*
+        querySnapshot.forEach((doc) => {
+            this.listado.push({id: doc.id, ...doc.data()});
+        });
+        this.listadoPanel = this.listado;
+        refresher.target.complete();
+    });
+    */
     }
 
     async delete() { // para solucionar el tema de list-items-sliding con ngfor
@@ -112,7 +115,7 @@ export class Tab1Page implements OnInit {
         await modal.onDidDismiss()
             .then(response => {
                 this.nuevaS.leeOfertas()
-                    .subscribe(querySnapshot => {
+                    .then(querySnapshot => {
                         this.listado = [];
                         this.delete();
                         /* Es un hack para solucionar un bug con el refresher y las listas
@@ -123,12 +126,10 @@ export class Tab1Page implements OnInit {
                         this.listadoPanel = this.listado;
                     });
 
-                // this.mostarConfirmacion();
+                this.mostarConfirmacion();
 
             })
-            .catch(response => {
-                console.log('Error');
-            });
+            .catch(response => console.log(response));
     }
 
 
@@ -144,6 +145,7 @@ export class Tab1Page implements OnInit {
         cat.then(dat => {
             this.category = dat;
             this.category = +this.category; // to int;
+            /*
             if (this.category == 1) {
                 // if (this.cloud.isInfinityScrollEnabled()) {
                 //    this.ionInfiniteScroll.disabled = false;
@@ -153,6 +155,7 @@ export class Tab1Page implements OnInit {
             } else {
                 this.ionInfiniteScroll.disabled = false;
             }
+            */
         });
     }
 
@@ -181,11 +184,11 @@ export class Tab1Page implements OnInit {
         return await myloading.present();
     }
 
-    /*
+
     async mostarConfirmacion() {
         const mensaje = await this.alertCtrl.create({
             header: 'Exito',
-            message: 'Operación realizada con exito',
+            message: 'Tu oferta ha sido publicada, espera a que alguien se una a ti',
             buttons: [
                 {
                     text: 'Aceptar',
@@ -199,6 +202,6 @@ export class Tab1Page implements OnInit {
         await mensaje.present();
 
     }
-    */
+
 
 }

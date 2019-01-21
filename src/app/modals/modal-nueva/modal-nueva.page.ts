@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {LoadingController, ModalController} from '@ionic/angular';
+import {AlertController, LoadingController, ModalController} from '@ionic/angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NuevaServiceService} from '../../services/nueva-service.service';
+
+import * as firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
     selector: 'app-modal-nueva',
@@ -16,7 +19,8 @@ export class ModalNuevaPage implements OnInit {
     constructor(private modalController: ModalController,
                 private formBuilder: FormBuilder,
                 private loadingController: LoadingController,
-                private nuevaS: NuevaServiceService) {
+                private nuevaS: NuevaServiceService,
+                private afa: AngularFireAuth) {
         this.nueva = this.formBuilder.group({
             tipo: ['', Validators.required],
             plazas: ['', Validators.required],
@@ -33,11 +37,15 @@ export class ModalNuevaPage implements OnInit {
         const data = {
             tipo: this.nueva.get('tipo').value,
             plazas: this.nueva.get('plazas').value,
-            fecha: this.nueva.get('fecha').value
+            fecha: this.nueva.get('fecha').value,
+            ofertante: this.afa.auth.currentUser.email,
+            aceptada: ''
         };
+        /*
         console.log('Tipo: ' + data.tipo);
         console.log('Plazas: ' + data.plazas);
         console.log('Fecha: ' + data.fecha);
+        */
         /* Mostramos el cargando... */
         this.myLoading = this.presentLoading();
         this.nuevaS.agregaOferta(data)
