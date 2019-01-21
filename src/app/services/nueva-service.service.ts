@@ -21,5 +21,9 @@ export class NuevaServiceService {
         return this.myCollection.ref.orderBy('fecha').get();
     }
 
+    actualizaOferta(id, data) {
+        return this.myCollection.doc(id).set(data);
+    }
+
 
 }

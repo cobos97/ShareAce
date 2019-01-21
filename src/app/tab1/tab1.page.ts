@@ -4,6 +4,7 @@ import {ModalNuevaPage} from '../modals/modal-nueva/modal-nueva.page';
 import {NuevaServiceService} from '../services/nueva-service.service';
 
 import * as firebase from 'firebase';
+import {AngularFireAuth} from 'angularfire2/auth';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class Tab1Page implements OnInit {
 
     listado = [];
     listadoPanel = [];
+    private myLoading: any;
 
     SwipedTabsIndicator: any = null;
     tabs = ['selectTab(0)', 'selectTab(1)'];
@@ -28,7 +30,8 @@ export class Tab1Page implements OnInit {
                 private nuevaS: NuevaServiceService,
                 public loadingController: LoadingController,
                 private controlerAceptar: AlertController,
-                private alertCtrl: AlertController) {
+                private alertCtrl: AlertController,
+                private afa: AngularFireAuth) {
         this.initializeItems();
     }
 
@@ -133,6 +136,30 @@ export class Tab1Page implements OnInit {
     }
 
 
+    aceptarOferta(id: any, tipo: any, plazas: any, fecha: any, ofertante: any) {
+
+        const data = {
+            tipo: tipo,
+            plazas: plazas - 1,
+            fecha: fecha,
+            ofertante: ofertante,
+            aceptada: this.afa.auth.currentUser.email
+        };
+        this.nuevaS.actualizaOferta(id, data)
+            .then(() => {
+                console.log('ID insertado (por si lo necesitamos para algo...): ', id);
+
+            })
+            .catch((error) => {
+                console.error('Error insertando documento: ', error);
+                this.mostarConfirmacion();
+                /* Cerramos el cargando...*/
+                /* Mostramos un mensaje de error */
+                /* A desarrollar, se aconseja emplear un componente denominado toast */
+            });
+    }
+
+
     ionViewWillEnter() {
         this.category = '0';
         this.SwipedTabsSlider.length().then(l => {  // no sería necesario aquí, solo en ngOnInit
@@ -202,6 +229,5 @@ export class Tab1Page implements OnInit {
         await mensaje.present();
 
     }
-
 
 }
