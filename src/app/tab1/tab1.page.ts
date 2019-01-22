@@ -17,6 +17,8 @@ export class Tab1Page implements OnInit {
     @ViewChild('infiniteScroll') ionInfiniteScroll: IonInfiniteScroll;
     @ViewChild('dynamicList') dynamicList;
 
+    aceptadas: any;
+
     listado = [];
     listadoPanel = [];
     private myLoading: any;
@@ -136,18 +138,21 @@ export class Tab1Page implements OnInit {
     }
 
 
-    aceptarOferta(id: any, tipo: any, plazas: any, fecha: any, ofertante: any) {
+    aceptarOferta(item: any) {
+
+        this.aceptadas = item.aceptada;
+        console.log(this.aceptadas);
 
         const data = {
-            tipo: tipo,
-            plazas: plazas - 1,
-            fecha: fecha,
-            ofertante: ofertante,
-            aceptada: this.afa.auth.currentUser.email
+            tipo: item.tipo,
+            plazas: item.plazas - 1,
+            fecha: item.fecha,
+            ofertante: item.ofertante,
+            aceptada: this.aceptadas + ',' + this.afa.auth.currentUser.email
         };
-        this.nuevaS.actualizaOferta(id, data)
+        this.nuevaS.actualizaOferta(item.id, data)
             .then(() => {
-                console.log('ID insertado (por si lo necesitamos para algo...): ', id);
+                console.log('ID insertado (por si lo necesitamos para algo...): ', item.id);
 
             })
             .catch((error) => {
