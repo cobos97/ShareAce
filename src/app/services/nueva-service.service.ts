@@ -18,7 +18,7 @@ export class NuevaServiceService {
     }
 
     leeOfertas() {
-        return this.myCollection.ref.orderBy('fecha').get();
+        return this.myCollection.ref.where('plazas', '>', 0).orderBy('plazas').orderBy('fecha').get();
     }
 
     actualizaOferta(id, data) {

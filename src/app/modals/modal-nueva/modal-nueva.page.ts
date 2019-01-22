@@ -39,7 +39,7 @@ export class ModalNuevaPage implements OnInit {
             plazas: this.nueva.get('plazas').value,
             fecha: this.nueva.get('fecha').value,
             ofertante: this.afa.auth.currentUser.email,
-            aceptada: ''
+            aceptada: []
         };
         /*
         console.log('Tipo: ' + data.tipo);

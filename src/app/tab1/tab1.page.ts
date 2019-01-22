@@ -17,7 +17,7 @@ export class Tab1Page implements OnInit {
     @ViewChild('infiniteScroll') ionInfiniteScroll: IonInfiniteScroll;
     @ViewChild('dynamicList') dynamicList;
 
-    aceptadas: any;
+    aceptadas = [];
 
     listado = [];
     listadoPanel = [];
@@ -35,6 +35,8 @@ export class Tab1Page implements OnInit {
                 private alertCtrl: AlertController,
                 private afa: AngularFireAuth) {
         this.initializeItems();
+
+
     }
 
     ngOnInit() {
@@ -141,18 +143,19 @@ export class Tab1Page implements OnInit {
     aceptarOferta(item: any) {
 
         this.aceptadas = item.aceptada;
-        console.log(this.aceptadas);
+        this.aceptadas.push(this.afa.auth.currentUser.email);
 
         const data = {
             tipo: item.tipo,
             plazas: item.plazas - 1,
             fecha: item.fecha,
             ofertante: item.ofertante,
-            aceptada: this.aceptadas + ',' + this.afa.auth.currentUser.email
+            aceptada: this.aceptadas
         };
         this.nuevaS.actualizaOferta(item.id, data)
             .then(() => {
                 console.log('ID insertado (por si lo necesitamos para algo...): ', item.id);
+                this.aceptadas = [];
 
             })
             .catch((error) => {
