@@ -51,7 +51,9 @@
                         <ion-item>
                             <ion-label><h2>{{item.tipo}}</h2>
                                 <p>Hay {{item.plazas}} plazas ofertadas.</p>
-                                <p>Fecha: {{item.fecha}}</p></ion-label>
+                                <p>Fecha: {{item.fecha}}</p>
+                                <p>Ofertada por: {{item.ofertante}}</p>
+                            </ion-label>
                             <ion-button  (click)="aceptarOferta(item)"></ion-button>
                         </ion-item>
                         <ion-item-options side="start">
@@ -78,7 +80,35 @@
         <ion-slide>
             <ion-content class="fixed-scroll">
 
-                Slide 2
+                <ion-content class="fixed-scroll">
+
+                    <ion-refresher (ionRefresh)="doRefresh($event)">
+                        <ion-refresher-content
+                                pullingIcon="arrow-dropdown"
+                                pullingText="Arrastra para refrescar"
+                                refreshingSpinner="crescent"
+                                refreshingText="Cargando...">
+                        </ion-refresher-content>
+                    </ion-refresher>
+                    <ion-list #dynamicList id="dynamicList2">
+                        <ion-item-sliding *ngFor="let item of prueba2;let i = index">
+                            <ion-item>
+                                <ion-label><h2>{{item.tipo}}</h2>
+                                    <p>Quedan {{item.plazas}} plazas ofertadas.</p>
+                                    <p>Fecha: {{item.fecha}}</p>
+                                <p>Ofertada por: {{item.ofertante}}</p></ion-label>
+                                <ion-button (click)="aceptarOferta(item)"></ion-button>
+                            </ion-item>
+                            <ion-item-options side="end">
+                                <ion-item-option color="red"
+                                                 (click)="aceptarOferta(item)">
+                                    <ion-icon name="checkmark" style="zoom:2.0;"></ion-icon>
+                                </ion-item-option>
+                            </ion-item-options>
+                        </ion-item-sliding>
+                    </ion-list>
+
+                </ion-content>
 
             </ion-content>
         </ion-slide>

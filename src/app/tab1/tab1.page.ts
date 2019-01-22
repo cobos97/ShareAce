@@ -5,6 +5,7 @@ import {NuevaServiceService} from '../services/nueva-service.service';
 
 import * as firebase from 'firebase';
 import {AngularFireAuth} from 'angularfire2/auth';
+import {element} from 'protractor';
 
 
 @Component({
@@ -17,10 +18,15 @@ export class Tab1Page implements OnInit {
     @ViewChild('infiniteScroll') ionInfiniteScroll: IonInfiniteScroll;
     @ViewChild('dynamicList') dynamicList;
 
+    prueba = [];
+    prueba2 = [];
+
     aceptadas = [];
 
     listado = [];
+    listado2 = [];
     listadoPanel = [];
+    listadoPanel2 = [];
     private myLoading: any;
 
     SwipedTabsIndicator: any = null;
@@ -35,8 +41,6 @@ export class Tab1Page implements OnInit {
                 private alertCtrl: AlertController,
                 private afa: AngularFireAuth) {
         this.initializeItems();
-
-
     }
 
     ngOnInit() {
@@ -46,7 +50,7 @@ export class Tab1Page implements OnInit {
     ionViewDidEnter() {
         this.SwipedTabsIndicator = document.getElementById('indicator');
         this.presentLoading('Cargando');
-        this.nuevaS.leeOfertas().then(
+        this.nuevaS.leeOfertasFiltradas().then(
             querySnapshot => {
                 this.listado = [];
                 this.delete();
@@ -54,9 +58,25 @@ export class Tab1Page implements OnInit {
                     this.listado.push({id: doc.id, ...doc.data()});
                 });
                 this.listadoPanel = this.listado;
-                this.loadingController.dismiss();
+
+                this.rellenaAceptadas();
+
+                /*
+                this.nuevaS.leeOfertasPropias(this.afa.auth.currentUser.email).then(
+                    querySnapshot2 => {
+                        this.listado2 = [];
+                        this.delete();
+                        querySnapshot2.forEach((doc) => {
+                            this.listado2.push({id: doc.id, ...doc.data()});
+                        });
+                        this.listadoPanel2 = this.listado2;
+                        this.loadingController.dismiss();
+                    }
+                );
+                */
             }
         );
+
         /*
         this.nuevaS.leeOfertas()
             .subscribe((querySnapshot) => {
@@ -76,7 +96,7 @@ export class Tab1Page implements OnInit {
 
     /* Esta función es llamada por el componente Refresher de IONIC v4 */
     doRefresh(refresher) {
-        this.nuevaS.leeOfertas().then(
+        this.nuevaS.leeOfertasFiltradas().then(
             querySnapshot => {
                 this.listado = [];
                 this.delete();
@@ -121,7 +141,7 @@ export class Tab1Page implements OnInit {
 
         await modal.onDidDismiss()
             .then(response => {
-                this.nuevaS.leeOfertas()
+                this.nuevaS.leeOfertasFiltradas()
                     .then(querySnapshot => {
                         this.listado = [];
                         this.delete();
@@ -165,6 +185,7 @@ export class Tab1Page implements OnInit {
                 /* Mostramos un mensaje de error */
                 /* A desarrollar, se aconseja emplear un componente denominado toast */
             });
+        this.rellenaAceptadas();
     }
 
 
@@ -236,6 +257,30 @@ export class Tab1Page implements OnInit {
 
         await mensaje.present();
 
+    }
+
+    rellenaAceptadas() {
+        this.prueba2 = [];
+        this.nuevaS.leeOfertasAceptadas().then(
+            querySnapshot3 => {
+                this.prueba = [];
+                this.delete();
+                querySnapshot3.forEach((doc) => {
+                    this.prueba.push({id: doc.id, ...doc.data()});
+                });
+                this.prueba.forEach((elemento) => {
+                    if (elemento.ofertante == this.afa.auth.currentUser.email) {
+                        this.prueba2.push(elemento);
+                    }
+                    elemento.aceptada.forEach((emails) => {
+                        if (emails == this.afa.auth.currentUser.email) {
+                            this.prueba2.push(elemento);
+                        }
+                    });
+                });
+                this.loadingController.dismiss();
+            }
+        );
     }
 
 }
