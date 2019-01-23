@@ -15,6 +15,7 @@ import {environment} from '../environments/environment';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import {AutenticationService} from './services/autentication.service';
+import { CallNumber } from '@ionic-native/call-number';
 
 @NgModule({
     declarations: [AppComponent],
@@ -29,6 +30,7 @@ import {AutenticationService} from './services/autentication.service';
         SplashScreen,
         AutenticationService,
         AngularFireAuth,
+        CallNumber,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
     bootstrap: [AppComponent]

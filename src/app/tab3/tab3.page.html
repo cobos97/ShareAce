@@ -8,17 +8,18 @@
             </ion-menu-toggle>
         </ion-buttons>
         <ion-title>
-            ShareAce
+            ShareAceee
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content padding="">
-    <ion-card>
-        <ion-title>Av. del deporte (Moriles)</ion-title>
-        <ion-img src="../../assets/feliz.jpeg"></ion-img>
+    <ion-card padding="" *ngFor="let item of lugaresPanel;let i = index">
+        <ion-title>{{item.localizacion}}</ion-title>
+        <ion-img [src]="getImagen(item.imagen)" style="margin:auto"></ion-img>
         <ion-buttons float-right padding-bottom="5px" padding-end="5px">
-            <ion-button><ion-icon name="home"></ion-icon></ion-button>
+            <ion-button><ion-icon name="locate" style="font-size:30px"></ion-icon></ion-button>
+            <ion-button><ion-icon name="call" style="font-size:30px"></ion-icon></ion-button>
         </ion-buttons>
     </ion-card>
 </ion-content>
