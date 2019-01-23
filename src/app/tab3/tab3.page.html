@@ -16,10 +16,14 @@
 <ion-content padding="">
     <ion-card padding="" *ngFor="let item of lugaresPanel;let i = index">
         <ion-title>{{item.localizacion}}</ion-title>
-        <ion-img [src]="getImagen(item.imagen)" style="margin:auto"></ion-img>
+        <ion-img  style="margin:auto"></ion-img><!--[src]="getImagen(item.imagen)"-->
         <ion-buttons float-right padding-bottom="5px" padding-end="5px">
-            <ion-button><ion-icon name="locate" style="font-size:30px"></ion-icon></ion-button>
-            <ion-button><ion-icon name="call" style="font-size:30px"></ion-icon></ion-button>
+            <ion-button>
+                <ion-icon name="locate" style="font-size:30px"></ion-icon>
+            </ion-button>
+            <ion-button (click)="hacerLlamada(item.telefono)">
+                <ion-icon name="call" style="font-size:30px"></ion-icon>
+            </ion-button>
         </ion-buttons>
     </ion-card>
 </ion-content>

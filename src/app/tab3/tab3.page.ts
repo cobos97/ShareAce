@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {LoadingController} from '@ionic/angular';
 import {LugaresService} from '../services/lugares.service';
 import {DomSanitizer} from '@angular/platform-browser';
-import { CallNumber } from '@ionic-native/call-number';
+
+// import { CallNumber } from '@ionic-native/call-number';
 
 @Component({
     selector: 'app-tab3',
@@ -17,7 +18,8 @@ export class Tab3Page {
     constructor(private lugaresS: LugaresService,
                 public loadingController: LoadingController,
                 private sanitizer: DomSanitizer,
-                private callNumber: CallNumber) {
+                // private callNumber: CallNumber
+    ) {
         this.initializeItems();
     }
 
@@ -44,11 +46,16 @@ export class Tab3Page {
         return this.sanitizer.bypassSecurityTrustUrl(img);
     }
 
+
     hacerLlamada(numero) {
+        console.log(numero);
+/*
         this.callNumber.callNumber(numero, true)
             .then(() => console.log('Launched dialer!'))
             .catch(() => console.log('Error launching dialer'));
+*/
     }
+
 
     async presentLoading(msg) {
         const myloading = await this.loadingController.create({
