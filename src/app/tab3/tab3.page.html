@@ -18,7 +18,7 @@
         <ion-title>{{item.localizacion}}</ion-title>
         <ion-img  style="margin:auto" [src]="item.imagen"></ion-img><!---->
         <ion-buttons float-right padding-bottom="5px" padding-end="5px">
-            <ion-button>
+            <ion-button (click)="mostrarMapa(item.mapa, item.localizacion)">
                 <ion-icon name="locate" style="font-size:30px"></ion-icon>
             </ion-button>
             <ion-button (click)="hacerLlamada(item.telefono)">

@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {LoadingController} from '@ionic/angular';
+import {LoadingController, ModalController} from '@ionic/angular';
 import {LugaresService} from '../services/lugares.service';
-import { CallNumber } from '@ionic-native/call-number/ngx';
+import {CallNumber} from '@ionic-native/call-number/ngx';
+import {ModalMapaPage} from '../modals/modal-mapa/modal-mapa.page';
 
 @Component({
     selector: 'app-tab3',
@@ -15,7 +16,8 @@ export class Tab3Page {
 
     constructor(private lugaresS: LugaresService,
                 public loadingController: LoadingController,
-                private callNumber: CallNumber
+                private callNumber: CallNumber,
+                private modalController: ModalController
     ) {
         this.initializeItems();
     }
@@ -52,7 +54,6 @@ export class Tab3Page {
     }
 
 
-
     hacerLlamada(numero) {
         console.log(numero);
 
@@ -62,6 +63,14 @@ export class Tab3Page {
 
     }
 
+    async mostrarMapa(mapa: any, titulo: any) {
+        const modal = await this.modalController.create({
+            component: ModalMapaPage,
+            componentProps: {mapa: mapa, titulo: titulo}
+        });
+        await modal.present();
+    }
+
 
     async presentLoading(msg) {
         const myloading = await this.loadingController.create({
@@ -69,6 +78,5 @@ export class Tab3Page {
         });
         return await myloading.present();
     }
-
 
 }

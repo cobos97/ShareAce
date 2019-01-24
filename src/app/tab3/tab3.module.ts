@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {Tab3Page} from './tab3.page';
-import {CallNumber} from '@ionic-native/call-number';
+import {ModalMapaPage} from '../modals/modal-mapa/modal-mapa.page';
 
 @NgModule({
     imports: [
@@ -13,7 +13,8 @@ import {CallNumber} from '@ionic-native/call-number';
         FormsModule,
         RouterModule.forChild([{path: '', component: Tab3Page}])
     ],
-    declarations: [Tab3Page]
+    declarations: [Tab3Page, ModalMapaPage],
+    entryComponents: [ModalMapaPage]
 })
 export class Tab3PageModule {
 }

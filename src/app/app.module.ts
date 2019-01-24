@@ -17,6 +17,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import {AutenticationService} from './services/autentication.service';
 import {CallNumber} from '@ionic-native/call-number/ngx';
 
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
@@ -31,6 +33,7 @@ import {CallNumber} from '@ionic-native/call-number/ngx';
         AutenticationService,
         AngularFireAuth,
         CallNumber,
+        Geolocation,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
     bootstrap: [AppComponent]
