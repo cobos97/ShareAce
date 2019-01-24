@@ -8,7 +8,7 @@
             </ion-menu-toggle>
         </ion-buttons>
         <ion-title>
-            ShareAceee
+            ShareAce
         </ion-title>
     </ion-toolbar>
 </ion-header>
@@ -16,7 +16,7 @@
 <ion-content padding="">
     <ion-card padding="" *ngFor="let item of lugaresPanel;let i = index">
         <ion-title>{{item.localizacion}}</ion-title>
-        <ion-img  style="margin:auto"></ion-img><!--[src]="getImagen(item.imagen)"-->
+        <ion-img  style="margin:auto" [src]="item.imagen"></ion-img><!---->
         <ion-buttons float-right padding-bottom="5px" padding-end="5px">
             <ion-button>
                 <ion-icon name="locate" style="font-size:30px"></ion-icon>

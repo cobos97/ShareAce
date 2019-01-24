@@ -1,9 +1,7 @@
 import {Component} from '@angular/core';
 import {LoadingController} from '@ionic/angular';
 import {LugaresService} from '../services/lugares.service';
-import {DomSanitizer} from '@angular/platform-browser';
-
-// import { CallNumber } from '@ionic-native/call-number';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
     selector: 'app-tab3',
@@ -17,18 +15,14 @@ export class Tab3Page {
 
     constructor(private lugaresS: LugaresService,
                 public loadingController: LoadingController,
-                private sanitizer: DomSanitizer,
-                // private callNumber: CallNumber
+                private callNumber: CallNumber
     ) {
         this.initializeItems();
     }
 
     initializeItems() {
         this.lugaresPanel = this.lugares;
-    }
 
-    ionViewDidEnter() {
-        this.presentLoading('Cargando');
         this.lugaresS.leeLugares().then(
             querySnapshot => {
                 this.lugares = [];
@@ -39,21 +33,33 @@ export class Tab3Page {
                 this.loadingController.dismiss();
             }
         );
-
     }
 
-    getImagen(img) {
-        return this.sanitizer.bypassSecurityTrustUrl(img);
+    ionViewDidEnter() {
+        this.presentLoading('Cargando');
+        /*
+        this.lugaresS.leeLugares().then(
+            querySnapshot => {
+                this.lugares = [];
+                querySnapshot.forEach((doc) => {
+                    this.lugares.push({id: doc.id, ...doc.data()});
+                });
+                this.lugaresPanel = this.lugares;
+                this.loadingController.dismiss();
+            }
+        );
+        */
     }
+
 
 
     hacerLlamada(numero) {
         console.log(numero);
-/*
+
         this.callNumber.callNumber(numero, true)
             .then(() => console.log('Launched dialer!'))
             .catch(() => console.log('Error launching dialer'));
-*/
+
     }
 
 
