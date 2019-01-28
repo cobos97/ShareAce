@@ -18,6 +18,7 @@ import {AutenticationService} from './services/autentication.service';
 import {CallNumber} from '@ionic-native/call-number/ngx';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import {NativeStorage} from '@ionic-native/native-storage/ngx';
 
 @NgModule({
     declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
         AutenticationService,
         AngularFireAuth,
         CallNumber,
+        NativeStorage,
         Geolocation,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],

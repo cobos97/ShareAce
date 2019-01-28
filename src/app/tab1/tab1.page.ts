@@ -6,6 +6,7 @@ import {NuevaServiceService} from '../services/nueva-service.service';
 import * as firebase from 'firebase';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {element} from 'protractor';
+import {NativeStorage} from '@ionic-native/native-storage/ngx';
 
 
 @Component({
@@ -39,7 +40,8 @@ export class Tab1Page implements OnInit {
                 public loadingController: LoadingController,
                 private controlerAceptar: AlertController,
                 private alertCtrl: AlertController,
-                private afa: AngularFireAuth) {
+                private afa: AngularFireAuth,
+                private nativeStorage: NativeStorage) {
         this.initializeItems();
     }
 
@@ -102,6 +104,7 @@ export class Tab1Page implements OnInit {
                     this.listado.push({id: doc.id, ...doc.data()});
                 });
                 this.listadoPanel = this.listado;
+                this.rellenaAceptadas();
                 refresher.target.complete();
             }
         );
@@ -123,10 +126,6 @@ export class Tab1Page implements OnInit {
     */
     }
 
-    async delete() { // para solucionar el tema de list-items-sliding con ngfor
-        await this.dynamicList.closeSlidingItems();
-    }
-
     initializeItems() {
         this.listadoPanel = this.listado;
     }
@@ -146,11 +145,12 @@ export class Tab1Page implements OnInit {
                        dinámicas (ngFor) */
                         querySnapshot.forEach((doc) => {
                             this.listado.push({id: doc.id, ...doc.data()});
+                            // this.mostarConfirmacion();
                         });
                         this.listadoPanel = this.listado;
                     });
 
-                this.mostarConfirmacion();
+                this.rellenaAceptadas();
 
             })
             .catch(response => console.log(response));
@@ -177,7 +177,7 @@ export class Tab1Page implements OnInit {
             })
             .catch((error) => {
                 console.error('Error insertando documento: ', error);
-                this.mostarConfirmacion();
+                // this.mostarConfirmacion();
                 /* Cerramos el cargando...*/
                 /* Mostramos un mensaje de error */
                 /* A desarrollar, se aconseja emplear un componente denominado toast */
@@ -277,6 +277,24 @@ export class Tab1Page implements OnInit {
                 this.loadingController.dismiss();
             }
         );
+    }
+
+
+    // PRUEBA DE GUARDAR EN BASE DE DATOS LOCAL
+    guardarSesion() {
+        this.nativeStorage.setItem('myitem', 'value')
+            .then(
+                () => console.log('Stored item!'),
+                error => console.error('Error storing item', error)
+            );
+    }
+
+    consultarSesion() {
+        this.nativeStorage.getItem('myitem')
+            .then(
+                data => console.log(data),
+                error => console.error(error)
+            );
     }
 
 }

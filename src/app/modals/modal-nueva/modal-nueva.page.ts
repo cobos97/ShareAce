@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NuevaServiceService} from '../../services/nueva-service.service';
 
 import * as firebase from 'firebase';
-import { AngularFireAuth } from 'angularfire2/auth';
+import {AngularFireAuth} from 'angularfire2/auth';
 
 @Component({
     selector: 'app-modal-nueva',
@@ -20,7 +20,8 @@ export class ModalNuevaPage implements OnInit {
                 private formBuilder: FormBuilder,
                 private loadingController: LoadingController,
                 private nuevaS: NuevaServiceService,
-                private afa: AngularFireAuth) {
+                private afa: AngularFireAuth,
+                private alertCtrl: AlertController) {
         this.nueva = this.formBuilder.group({
             tipo: ['', Validators.required],
             plazas: ['', Validators.required],
@@ -59,6 +60,9 @@ export class ModalNuevaPage implements OnInit {
                 });
                 /* Cerramos el cargando...*/
                 this.loadingController.dismiss();
+
+                this.mostarConfirmacion();
+
                 this.modalController.dismiss();
                 /*Podríamos ir a la página de listado*/
                 // this.router.navigateByUrl('/tabs/(tab1:tab1)');
@@ -85,6 +89,24 @@ export class ModalNuevaPage implements OnInit {
 
     dismiss() {
         this.modalController.dismiss();
+    }
+
+    async mostarConfirmacion() {
+        const mensaje = await this.alertCtrl.create({
+            header: 'Exito',
+            message: 'Tu oferta ha sido publicada, espera a que alguien se una a ti',
+            buttons: [
+                {
+                    text: 'Aceptar',
+                    handler: () => {
+                        console.log('Aceptar clicked');
+                    }
+                }
+            ]
+        });
+
+        await mensaje.present();
+
     }
 
 

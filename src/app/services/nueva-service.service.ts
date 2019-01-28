@@ -18,6 +18,9 @@ export class NuevaServiceService {
     }
 
     leeOfertasFiltradas() {
+        const d: Date = new Date();
+        const today = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+        console.log(today);
         return this.myCollection.ref.where('plazas', '>', 0).orderBy('plazas').orderBy('fecha').get();
     }
 
