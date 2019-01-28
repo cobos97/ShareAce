@@ -38,7 +38,7 @@ export class Tab3Page {
     }
 
     ionViewDidEnter() {
-        this.presentLoading('Cargando');
+        // this.presentLoading('Cargando');
         /*
         this.lugaresS.leeLugares().then(
             querySnapshot => {
@@ -63,10 +63,10 @@ export class Tab3Page {
 
     }
 
-    async mostrarMapa(mapa: any, titulo: any) {
+    async mostrarMapa(mapax: any, mapay: any, titulo: any) {
         const modal = await this.modalController.create({
             component: ModalMapaPage,
-            componentProps: {mapa: mapa, titulo: titulo}
+            componentProps: {mapax: mapax, mapay: mapay, titulo: titulo}
         });
         await modal.present();
     }

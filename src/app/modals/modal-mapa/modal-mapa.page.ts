@@ -12,29 +12,40 @@ export class ModalMapaPage implements OnInit {
     @ViewChild('map') mapContainer: ElementRef;
     map: any;
 
-    mapa: any;
+    mapax: any;
+    mapay: any;
     titulo: any;
+
 
     constructor(private modalController: ModalController,
                 private navParams: NavParams) {
         this.titulo = this.navParams.get('titulo');
-        this.mapa = this.navParams.get('mapa');
-        console.log(this.mapa);
+        this.mapax = this.navParams.get('mapax');
+        this.mapay = this.navParams.get('mapay');
 
 
     }
+
+    icon = leaflet.icon({
+        iconUrl: '../../assets/tennis.png',
+        iconSize: [40, 40]
+    });
 
     ionViewDidEnter() {
         this.loadmap();
     }
+
 
     loadmap() {
         this.map = leaflet.map('map').fitWorld();
         leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attributions: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,' +
                 ' <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-            maxZoom: 18
+            maxZoom: 25
         }).addTo(this.map);
+        this.map.setView([this.mapax, this.mapay], 16);
+        leaflet.marker([this.mapax, this.mapay], {icon: this.icon}).addTo(this.map).bindPopup('Pista Moriles');
+        /*
         this.map.locate({
             setView: true,
             maxZoom: 10
@@ -48,6 +59,7 @@ export class ModalMapaPage implements OnInit {
         }).on('locationerror', (err) => {
             alert(err.message);
         });
+        */
 
     }
 
