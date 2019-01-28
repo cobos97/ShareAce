@@ -32,7 +32,7 @@ export class Tab1Page implements OnInit {
     SwipedTabsIndicator: any = null;
     tabs = ['selectTab(0)', 'selectTab(1)'];
     ntabs = 2;
-    private category: any;
+    category: any;
 
     constructor(private modalControler: ModalController,
                 private nuevaS: NuevaServiceService,
@@ -53,7 +53,6 @@ export class Tab1Page implements OnInit {
         this.nuevaS.leeOfertasFiltradas().then(
             querySnapshot => {
                 this.listado = [];
-                this.delete();
                 querySnapshot.forEach((doc) => {
                     this.listado.push({id: doc.id, ...doc.data()});
                 });
@@ -99,7 +98,6 @@ export class Tab1Page implements OnInit {
         this.nuevaS.leeOfertasFiltradas().then(
             querySnapshot => {
                 this.listado = [];
-                this.delete();
                 querySnapshot.forEach((doc) => {
                     this.listado.push({id: doc.id, ...doc.data()});
                 });
@@ -144,7 +142,6 @@ export class Tab1Page implements OnInit {
                 this.nuevaS.leeOfertasFiltradas()
                     .then(querySnapshot => {
                         this.listado = [];
-                        this.delete();
                         /* Es un hack para solucionar un bug con el refresher y las listas
                        dinámicas (ngFor) */
                         querySnapshot.forEach((doc) => {
@@ -264,16 +261,15 @@ export class Tab1Page implements OnInit {
         this.nuevaS.leeOfertasAceptadas().then(
             querySnapshot3 => {
                 this.prueba = [];
-                this.delete();
                 querySnapshot3.forEach((doc) => {
                     this.prueba.push({id: doc.id, ...doc.data()});
                 });
                 this.prueba.forEach((elemento) => {
-                    if (elemento.ofertante == this.afa.auth.currentUser.email) {
+                    if (elemento.ofertante === this.afa.auth.currentUser.email) {
                         this.prueba2.push(elemento);
                     }
                     elemento.aceptada.forEach((emails) => {
-                        if (emails == this.afa.auth.currentUser.email) {
+                        if (emails === this.afa.auth.currentUser.email) {
                             this.prueba2.push(elemento);
                         }
                     });
