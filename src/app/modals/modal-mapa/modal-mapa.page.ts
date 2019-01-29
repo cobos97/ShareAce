@@ -63,6 +63,10 @@ export class ModalMapaPage implements OnInit {
 
     }
 
+    cerrar() {
+        this.modalController.dismiss();
+    }
+
     ngOnInit() {
     }
 
