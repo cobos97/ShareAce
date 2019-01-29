@@ -6,6 +6,7 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 
 import {AutenticationService} from './services/autentication.service';
 import {Router} from '@angular/router';
+import {NativeStorage} from '@ionic-native/native-storage/ngx';
 
 @Component({
     selector: 'app-root',
@@ -25,7 +26,8 @@ export class AppComponent {
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
         private athService: AutenticationService,
-        private router: Router
+        private router: Router,
+        private nativeStorage: NativeStorage
     ) {
         this.initializeApp();
     }
@@ -40,8 +42,19 @@ export class AppComponent {
     cerrarSesion() {
         console.log('Cierrate');
         this.athService.cerrarSesion()
-            .then(() => this.router.navigateByUrl('/inicio-sesion'))
+            .then(() => {
+                this.router.navigateByUrl('/inicio-sesion');
+                this.cierraSesion();
+            } )
             .catch(e => console.log(e));
+    }
+
+    cierraSesion() {
+        this.nativeStorage.setItem('sesion', 'no')
+            .then(
+                () => console.log('Stored item!'),
+                error => console.error('Error storing item', error)
+            );
     }
 
 }

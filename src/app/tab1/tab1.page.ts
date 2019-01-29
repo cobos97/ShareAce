@@ -43,6 +43,7 @@ export class Tab1Page implements OnInit {
                 private afa: AngularFireAuth,
                 private nativeStorage: NativeStorage) {
         this.initializeItems();
+
     }
 
     ngOnInit() {
@@ -282,7 +283,7 @@ export class Tab1Page implements OnInit {
 
     // PRUEBA DE GUARDAR EN BASE DE DATOS LOCAL
     guardarSesion() {
-        this.nativeStorage.setItem('myitem', 'value')
+        this.nativeStorage.setItem('sesion', 'si')
             .then(
                 () => console.log('Stored item!'),
                 error => console.error('Error storing item', error)
