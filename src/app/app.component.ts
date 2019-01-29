@@ -8,6 +8,12 @@ import {AutenticationService} from './services/autentication.service';
 import {Router} from '@angular/router';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
 
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
+import {setTranslateLoader} from './app.module';
+
+import {environment} from '../environments/environment';
+
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html'
@@ -21,21 +27,33 @@ export class AppComponent {
         }
     ];
 
+    langmenu: any;
+
     constructor(
         private platform: Platform,
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
         private athService: AutenticationService,
         private router: Router,
-        private nativeStorage: NativeStorage
+        private nativeStorage: NativeStorage,
+        private translate: TranslateService
     ) {
         this.initializeApp();
+        this.langmenu = (environment.defaultLanguage == 'es' ? false : true);
     }
+
 
     initializeApp() {
         this.platform.ready().then(() => {
+            this.translate.addLangs(environment.currentLanguages);
+            if (this.translate.getBrowserLang) {  // if browsers's language is avalaible is set up as default
+                if (environment.currentLanguages.includes(this.translate.getBrowserLang())) {
+                    this.translate.use(this.translate.getBrowserLang());
+                }
+            }
+            // Here we will check if the user is already logged in
+            // because we don't want to ask users to log in each time they open the app
             this.statusBar.styleDefault();
-            this.splashScreen.hide();
         });
     }
 
@@ -45,7 +63,7 @@ export class AppComponent {
             .then(() => {
                 this.router.navigateByUrl('/inicio-sesion');
                 this.cierraSesion();
-            } )
+            })
             .catch(e => console.log(e));
     }
 
@@ -55,6 +73,15 @@ export class AppComponent {
                 () => console.log('Stored item!'),
                 error => console.error('Error storing item', error)
             );
+    }
+
+    changeLang(e) {
+        // console.log(e.detail.checked);
+        if (e.detail.checked) {
+            this.translate.use('en');
+        } else {
+            this.translate.use('es');
+        }
     }
 
 }

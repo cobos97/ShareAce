@@ -8,6 +8,12 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import {element} from 'protractor';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
 
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
+import { setTranslateLoader } from '../app.module';
+
+import {environment} from '../../environments/environment';
+
 
 @Component({
     selector: 'app-tab1',
@@ -41,7 +47,9 @@ export class Tab1Page implements OnInit {
                 private controlerAceptar: AlertController,
                 private alertCtrl: AlertController,
                 private afa: AngularFireAuth,
-                private nativeStorage: NativeStorage) {
+                private nativeStorage: NativeStorage,
+                private translate: TranslateService) {
+        // translate.setDefaultLang(environment.defaultLanguage);
         this.initializeItems();
 
     }

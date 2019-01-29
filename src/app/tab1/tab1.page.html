@@ -17,11 +17,11 @@
                  color="black">
         <ion-segment-button layout="icon-start" value="0" style="--padding-end:0px;--padding-start:0px">
             <ion-icon name="mail" style="margin-right:1px;zoom:0.8"></ion-icon>
-            <ion-label>Ofertas</ion-label>
+            <ion-label>{{'offers'|translate}}</ion-label>
         </ion-segment-button>
         <ion-segment-button layout="icon-start" value="1" style="--padding-end:0px;--padding-start:0px">
             <ion-icon name="contacts" style="margin-right:1px;zoom:0.8"></ion-icon>
-            <ion-label>Aceptadas</ion-label>
+            <ion-label>{{'accepted'|translate}}</ion-label>
         </ion-segment-button>
     </ion-segment>
     <div id='indicator' class="SwipedTabs-indicatorSegment" [ngStyle]="
@@ -49,9 +49,9 @@
                 <ion-list #dynamicList id="dynamicList">
                     <ion-item *ngFor="let item of listadoPanel;let i = index">
                         <ion-label><h2>{{item.tipo}}</h2>
-                            <p>Hay {{item.plazas}} plazas ofertadas.</p>
-                            <p>Fecha: {{item.fecha}}</p>
-                            <p>Ofertada por: {{item.ofertante}}</p>
+                            <p>{{'there_is'|translate}} {{item.plazas}} {{'available_seats'|translate}}.</p>
+                            <p>{{ 'date' | translate}}:  {{item.fecha}}</p>
+                            <p>{{'offered_by'|translate}}: {{item.ofertante}}</p>
                         </ion-label>
                         <ion-icon (click)="aceptarOferta(item)" name="checkmark-circle-outline"
                                   style="font-size:30px"></ion-icon>
@@ -85,9 +85,9 @@
                     <ion-list #dynamicList id="dynamicList2">
                         <ion-item *ngFor="let item of prueba2;let i = index">
                             <ion-label><h2>{{item.tipo}}</h2>
-                                <p>Quedan {{item.plazas}} plazas ofertadas.</p>
-                                <p>Fecha: {{item.fecha}}</p>
-                                <p>Ofertada por: {{item.ofertante}}</p></ion-label>
+                                <p>{{'there_is'|translate}} {{item.plazas}} {{'available_seats'|translate}}.</p>
+                                <p>{{ 'date' | translate}}: {{item.fecha}}</p>
+                                <p>{{'offered_by'|translate}}: {{item.ofertante}}</p></ion-label>
                             <ion-icon (click)="aceptarOferta(item)" name="close-circle-outline"
                                       style="font-size:30px"></ion-icon>
                         </ion-item>

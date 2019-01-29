@@ -20,6 +20,14 @@ import {CallNumber} from '@ionic-native/call-number/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
 
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {TranslateLoader, TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+export function setTranslateLoader(http: any) {
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+// @ts-ignore
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
@@ -27,6 +35,13 @@ import {NativeStorage} from '@ionic-native/native-storage/ngx';
         IonicModule.forRoot(),
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
+        HttpClientModule, TranslateModule.forRoot({  // Módulo de traducción
+            loader: {
+                provide: TranslateLoader,
+                useFactory: (setTranslateLoader),
+                deps: [HttpClient]
+            }
+        }),
         AngularFirestoreModule],
     providers: [
         StatusBar,
@@ -36,6 +51,8 @@ import {NativeStorage} from '@ionic-native/native-storage/ngx';
         CallNumber,
         NativeStorage,
         Geolocation,
+        TranslateService,
+        TranslateStore,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
     bootstrap: [AppComponent]

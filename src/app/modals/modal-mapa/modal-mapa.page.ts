@@ -44,7 +44,7 @@ export class ModalMapaPage implements OnInit {
             maxZoom: 25
         }).addTo(this.map);
         this.map.setView([this.mapax, this.mapay], 16);
-        leaflet.marker([this.mapax, this.mapay], {icon: this.icon}).addTo(this.map).bindPopup('Pista Moriles');
+        leaflet.marker([this.mapax, this.mapay], {icon: this.icon}).addTo(this.map).bindPopup(this.titulo);
         /*
         this.map.locate({
             setView: true,
