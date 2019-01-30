@@ -8,11 +8,12 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import {element} from 'protractor';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
 
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
-import { setTranslateLoader } from '../app.module';
+import {setTranslateLoader} from '../app.module';
 
 import {environment} from '../../environments/environment';
+import {AppComponent} from '../app.component';
 
 
 @Component({
@@ -36,6 +37,8 @@ export class Tab1Page implements OnInit {
     listadoPanel2 = [];
     private myLoading: any;
 
+    email: any;
+
     SwipedTabsIndicator: any = null;
     tabs = ['selectTab(0)', 'selectTab(1)'];
     ntabs = 2;
@@ -48,10 +51,10 @@ export class Tab1Page implements OnInit {
                 private alertCtrl: AlertController,
                 private afa: AngularFireAuth,
                 private nativeStorage: NativeStorage,
-                private translate: TranslateService) {
+                private translate: TranslateService,
+                private appComponent: AppComponent) {
         // translate.setDefaultLang(environment.defaultLanguage);
         this.initializeItems();
-
     }
 
     ngOnInit() {
@@ -70,6 +73,11 @@ export class Tab1Page implements OnInit {
                 this.listadoPanel = this.listado;
 
                 this.rellenaAceptadas();
+
+                this.email = this.afa.auth.currentUser.email;
+                console.log(this.email);
+
+                this.appComponent.setEmail(this.email);
 
                 /*
                 this.nuevaS.leeOfertasPropias(this.afa.auth.currentUser.email).then(

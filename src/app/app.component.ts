@@ -8,6 +8,8 @@ import {AutenticationService} from './services/autentication.service';
 import {Router} from '@angular/router';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
 
+import {AngularFireAuth} from 'angularfire2/auth';
+
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
 import {setTranslateLoader} from './app.module';
@@ -21,13 +23,16 @@ import {environment} from '../environments/environment';
 export class AppComponent {
     public appPages = [
         {
-            title: 'Inicio',
+            title: 'home',
             url: '/tabs/tabs/tab1',
             icon: 'home'
         }
     ];
 
     langmenu: any;
+
+    email: any;
+    fecha: any;
 
     constructor(
         private platform: Platform,
@@ -36,10 +41,15 @@ export class AppComponent {
         private athService: AutenticationService,
         private router: Router,
         private nativeStorage: NativeStorage,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private afa: AngularFireAuth
     ) {
         this.initializeApp();
         this.langmenu = (environment.defaultLanguage == 'es' ? false : true);
+    }
+
+    setEmail(email) {
+        this.email = email;
     }
 
 
@@ -54,6 +64,11 @@ export class AppComponent {
             // Here we will check if the user is already logged in
             // because we don't want to ask users to log in each time they open the app
             this.statusBar.styleDefault();
+
+            const d: Date = new Date();
+            this.fecha = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+
+
         });
     }
 
