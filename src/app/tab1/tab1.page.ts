@@ -14,6 +14,7 @@ import {setTranslateLoader} from '../app.module';
 
 import {environment} from '../../environments/environment';
 import {AppComponent} from '../app.component';
+import {Toast} from '@ionic-native/toast/ngx';
 
 
 @Component({
@@ -52,7 +53,8 @@ export class Tab1Page implements OnInit {
                 private afa: AngularFireAuth,
                 private nativeStorage: NativeStorage,
                 private translate: TranslateService,
-                private appComponent: AppComponent) {
+                private appComponent: AppComponent,
+                private toast: Toast) {
         // translate.setDefaultLang(environment.defaultLanguage);
         this.initializeItems();
     }
@@ -199,7 +201,20 @@ export class Tab1Page implements OnInit {
                 /* Mostramos un mensaje de error */
                 /* A desarrollar, se aconseja emplear un componente denominado toast */
             });
+
+        this.nuevaS.leeOfertasFiltradas().then(
+            querySnapshot => {
+                this.listado = [];
+                querySnapshot.forEach((doc) => {
+                    this.listado.push({id: doc.id, ...doc.data()});
+                });
+                this.listadoPanel = this.listado;
+                this.rellenaAceptadas();
+            }
+        );
+
         this.rellenaAceptadas();
+        this.presentToast();
     }
 
 
@@ -252,6 +267,14 @@ export class Tab1Page implements OnInit {
             message: msg
         });
         return await myloading.present();
+    }
+
+    presentToast() {
+        this.toast.show(`Has aceptado la oferta`, '5000', 'center').subscribe(
+            toast => {
+                console.log(toast);
+            }
+        );
     }
 
 

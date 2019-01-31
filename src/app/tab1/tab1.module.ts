@@ -8,6 +8,7 @@ import {ModalNuevaPage} from '../modals/modal-nueva/modal-nueva.page';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {setTranslateLoader} from '../app.module';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {Toast} from '@ionic-native/toast/ngx';
 
 @NgModule({
     imports: [

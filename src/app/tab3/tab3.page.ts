@@ -19,27 +19,16 @@ export class Tab3Page {
                 private callNumber: CallNumber,
                 private modalController: ModalController
     ) {
+
         this.initializeItems();
     }
 
     initializeItems() {
         this.lugaresPanel = this.lugares;
-
-        this.lugaresS.leeLugares().then(
-            querySnapshot => {
-                this.lugares = [];
-                querySnapshot.forEach((doc) => {
-                    this.lugares.push({id: doc.id, ...doc.data()});
-                });
-                this.lugaresPanel = this.lugares;
-                this.loadingController.dismiss();
-            }
-        );
     }
 
     ionViewDidEnter() {
-        // this.presentLoading('Cargando');
-        /*
+        this.presentLoading('Cargando');
         this.lugaresS.leeLugares().then(
             querySnapshot => {
                 this.lugares = [];
@@ -50,7 +39,6 @@ export class Tab3Page {
                 this.loadingController.dismiss();
             }
         );
-        */
     }
 
 
@@ -69,6 +57,21 @@ export class Tab3Page {
             componentProps: {mapax: mapax, mapay: mapay, titulo: titulo}
         });
         await modal.present();
+    }
+
+    getFilteredItem(ev: any) {
+        // Reset items back to all of the items
+        this.initializeItems();
+
+        // set val to the value of the searchbar
+        const val = ev.target.value;
+
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.lugaresPanel = this.lugaresPanel.filter((item) => {
+                return (item.localizacion.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
+        }
     }
 
 

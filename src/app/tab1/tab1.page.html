@@ -48,7 +48,7 @@
                 </ion-refresher>
                 <ion-list #dynamicList id="dynamicList">
                     <ion-item *ngFor="let item of listadoPanel;let i = index">
-                        <ion-label><h2>{{item.tipo}}</h2>
+                        <ion-label><h2>{{item.tipo|translate}}</h2>
                             <p>{{'there_is'|translate}} {{item.plazas}} {{'available_seats'|translate}}.</p>
                             <p>{{ 'date' | translate}}:  {{item.fecha}}</p>
                             <p>{{'offered_by'|translate}}: {{item.ofertante}}</p>
@@ -84,12 +84,10 @@
                     </ion-refresher>
                     <ion-list #dynamicList id="dynamicList2">
                         <ion-item *ngFor="let item of prueba2;let i = index">
-                            <ion-label><h2>{{item.tipo}}</h2>
+                            <ion-label><h2>{{item.tipo|translate}}</h2>
                                 <p>{{'there_is'|translate}} {{item.plazas}} {{'available_seats'|translate}}.</p>
                                 <p>{{ 'date' | translate}}: {{item.fecha}}</p>
                                 <p>{{'offered_by'|translate}}: {{item.ofertante}}</p></ion-label>
-                            <ion-icon (click)="aceptarOferta(item)" name="close-circle-outline"
-                                      style="font-size:30px"></ion-icon>
                         </ion-item>
                     </ion-list>
 

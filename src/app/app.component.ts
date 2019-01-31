@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {Platform} from '@ionic/angular';
+import {AlertController, Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 
@@ -42,7 +42,8 @@ export class AppComponent {
         private router: Router,
         private nativeStorage: NativeStorage,
         private translate: TranslateService,
-        private afa: AngularFireAuth
+        private afa: AngularFireAuth,
+        private controlerSalir: AlertController
     ) {
         this.initializeApp();
         this.langmenu = (environment.defaultLanguage == 'es' ? false : true);
@@ -70,6 +71,31 @@ export class AppComponent {
 
 
         });
+    }
+
+    async mostrarSalir() {
+        const alert = await this.controlerSalir.create({
+            header: 'Cerrar sesión',
+            message: '¿Esta seguro que desea cerrar la sesión?',
+            buttons: [
+                {
+                    text: 'Cancelar',
+                    handler: () => {
+                        console.log('Cancelar clicked');
+                    }
+                },
+                {
+                    text: 'Aceptar',
+                    handler: () => {
+                        console.log('Aceptar clicked');
+                        this.cerrarSesion();
+                    }
+                }
+            ]
+        });
+
+        await alert.present();
+
     }
 
     cerrarSesion() {

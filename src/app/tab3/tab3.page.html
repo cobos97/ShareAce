@@ -14,9 +14,13 @@
 </ion-header>
 
 <ion-content padding="">
+    <ion-searchbar #searchBar id="searchBar" showCancelButton
+                   cancelButtonText="Cancelar" placeholder="Buscar"
+                   (ionInput)="getFilteredItem($event)" (ionClear)="cleared()"
+                   (ionCancel)="onCancel()"></ion-searchbar>
     <ion-card padding="" *ngFor="let item of lugaresPanel;let i = index">
         <ion-title>{{item.localizacion}}</ion-title>
-        <ion-img  style="margin:auto" [src]="item.imagen"></ion-img><!---->
+        <ion-img  style="margin:auto" [src]="item.imagen"></ion-img>
         <ion-buttons float-right padding-bottom="5px" padding-end="5px">
             <ion-button (click)="mostrarMapa(item.mapax, item.mapay, item.localizacion)">
                 <ion-icon name="locate" style="font-size:30px"></ion-icon>
