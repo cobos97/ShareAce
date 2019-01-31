@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {AlertController, Platform} from '@ionic/angular';
+import {AlertController, MenuController, Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 
@@ -43,7 +43,8 @@ export class AppComponent {
         private nativeStorage: NativeStorage,
         private translate: TranslateService,
         private afa: AngularFireAuth,
-        private controlerSalir: AlertController
+        private controlerSalir: AlertController,
+        private menu: MenuController
     ) {
         this.initializeApp();
         this.langmenu = (environment.defaultLanguage == 'es' ? false : true);
@@ -88,6 +89,7 @@ export class AppComponent {
                     text: 'Aceptar',
                     handler: () => {
                         console.log('Aceptar clicked');
+                        this.menu.close();
                         this.cerrarSesion();
                     }
                 }
