@@ -22,5 +22,7 @@
     "help": "Ayuda",
     "acerca_de": "Acerca de nosotros",
     "info": "Esta aplicación ha sido desarrollada con Ionic 4 en la asignatura de desarrollo de interfaces en el IES Francisco de los Rios (Córdoba)",
-    "contacto": "Contacto"
+    "contacto": "Contacto",
+    "error": "Esta parte de aplicación aún esta en fase de desarrollo, pronto estará disponible",
+    "version": "Versión"
     }
