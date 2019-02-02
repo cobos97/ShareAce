@@ -26,6 +26,11 @@ export class AppComponent {
             title: 'home',
             url: '/tabs/tabs/tab1',
             icon: 'home'
+        },
+        {
+            title: 'help',
+            url: '/ayuda',
+            icon: 'help'
         }
     ];
 

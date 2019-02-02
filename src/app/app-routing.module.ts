@@ -7,6 +7,7 @@ const routes: Routes = [
   // { path: 'modal-nueva', loadChildren: './modals/modal-nueva/modal-nueva.module#ModalNuevaPageModule' },
   { path: 'inicio-sesion', loadChildren: './autenticacion/inicio-sesion/inicio-sesion.module#InicioSesionPageModule' },
   { path: 'registro', loadChildren: './autenticacion/registro/registro.module#RegistroPageModule' },
+  { path: 'ayuda', loadChildren: './ayuda/ayuda.module#AyudaPageModule' },
   // { path: 'modal-mapa', loadChildren: './modals/modal-mapa/modal-mapa.module#ModalMapaPageModule' }
 ];
 @NgModule({

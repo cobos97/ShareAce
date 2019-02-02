@@ -18,6 +18,9 @@
     "acept": "Aceptar",
     "cancel": "Cancelar",
     "Individual": "Individual",
-    "Dobles": "Dobles"
-
+    "Dobles": "Dobles",
+    "help": "Ayuda",
+    "acerca_de": "Acerca de nosotros",
+    "info": "Esta aplicación ha sido desarrollada con Ionic 4 en la asignatura de desarrollo de interfaces en el IES Francisco de los Rios (Córdoba)",
+    "contacto": "Contacto"
     }
