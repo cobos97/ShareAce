@@ -9,6 +9,7 @@ import leaflet from 'leaflet';
 })
 export class ModalMapaPage implements OnInit {
 
+    // Contenedor del mapa
     @ViewChild('map') mapContainer: ElementRef;
     map: any;
 
@@ -17,6 +18,11 @@ export class ModalMapaPage implements OnInit {
     titulo: any;
 
 
+    /**
+     * Recupera del navParams los parámetros del título y las coordenadas de la localización
+     * @param modalController Controlador de la ventana modal
+     * @param navParams Módulo para recuparar parámetros mandados desde la página padre
+     */
     constructor(private modalController: ModalController,
                 private navParams: NavParams) {
         this.titulo = this.navParams.get('titulo');
@@ -26,16 +32,26 @@ export class ModalMapaPage implements OnInit {
 
     }
 
+    // Guardamos el icono que utilizaremos de marcador en el mapa
     icon = leaflet.icon({
         iconUrl: '../../assets/tennis.png',
         iconSize: [40, 40]
     });
 
+    /**
+     * Se ejecuta antes de entrar a la página
+     */
     ionViewDidEnter() {
         this.loadmap();
     }
 
 
+    /**
+     * Inicializa el mapa con todos los atributos necesarios.
+     * Posiciona la vista en las coordenadas de la clase y marca un zoom para que no se quede
+     * lejos el mapa.
+     * Posiciona el marcador en las mismas coordenadas y le cambia el icono al recogido anteriormente
+     */
     loadmap() {
         this.map = leaflet.map('map').fitWorld();
         leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -45,24 +61,12 @@ export class ModalMapaPage implements OnInit {
         }).addTo(this.map);
         this.map.setView([this.mapax, this.mapay], 16);
         leaflet.marker([this.mapax, this.mapay], {icon: this.icon}).addTo(this.map).bindPopup(this.titulo);
-        /*
-        this.map.locate({
-            setView: true,
-            maxZoom: 10
-        }).on('locationfound', (e) => {
-            const markerGroup = leaflet.featureGroup();
-            const marker: any = leaflet.marker([e.latitude, e.longitude]).on('click', () => {
-                alert('Marker clicked');
-            });
-            markerGroup.addLayer(marker);
-            this.map.addLayer(markerGroup);
-        }).on('locationerror', (err) => {
-            alert(err.message);
-        });
-        */
 
     }
 
+    /**
+     * Cierra el modal
+     */
     cerrar() {
         this.modalController.dismiss();
     }

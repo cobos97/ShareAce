@@ -18,6 +18,15 @@ export class InicioSesionPage implements OnInit {
 
     sesion: any;
 
+    /**
+     *
+     * @param formBuilder Constructor del formulario
+     * @param authService Servicio propio de autenticación de usuarios
+     * @param router Navegación entre páginas
+     * @param nativeStorage Módulo para acceder a la base de datos local
+     * @param toastController Controlador de los toast
+     * @param translate Módulo de traducción
+     */
     constructor(private formBuilder: FormBuilder,
                 private authService: AutenticationService,
                 private router: Router,
@@ -26,6 +35,12 @@ export class InicioSesionPage implements OnInit {
                 private translate: TranslateService) {
     }
 
+    /**
+     * Primero consulta el valor de la variable sesión en la base de datos local
+     * y si es 'si' redirige a la página de las tabs, pues ya habría iniciado
+     * sesión antes.
+     * Segundo inicializa el formulario de inicio de sesión y pone como obligatorios ambos campos
+     */
     ngOnInit() {
         this.consultarSesion()
             .then(
@@ -52,6 +67,12 @@ export class InicioSesionPage implements OnInit {
 
     }
 
+    /**
+     * Se ejecuta cuando se valida el formulario.
+     * Rellena los datos del usuario llamando al método saveUserdata().
+     * Llama al servicio de autenticación y en caso de éxito llama al método guardarSesión()
+     * y redirige a la página principal de las tabs. En caso de error llama al método presentToast()
+     */
     onSubmit() {
         this.userdata = this.saveUserdata();
         this.authService.inicioSesionUsuario(this.userdata)
@@ -65,6 +86,9 @@ export class InicioSesionPage implements OnInit {
             });
     }
 
+    /**
+     * Devuelve los datos del usuario tras recogerlos del formulario.
+     */
     saveUserdata() {
         const saveUserdata = {
             email: this.inicioForm.get('email').value,
@@ -73,6 +97,9 @@ export class InicioSesionPage implements OnInit {
         return saveUserdata;
     }
 
+    /**
+     * Sustituye el valor de la variable sesión en la base de datos local cuando iniciamos sesión
+     */
     guardarSesion() {
         this.nativeStorage.setItem('sesion', 'si')
             .then(
@@ -81,19 +108,16 @@ export class InicioSesionPage implements OnInit {
             );
     }
 
+    /**
+     * Devuelve el valor de la variable sesión de la base de datos local
+     */
     consultarSesion() {
         return this.nativeStorage.getItem('sesion');
-        /*
-        .then(
-            data => {
-                this.sesion = data;
-                console.log(data);
-            },
-            error => console.error(error)
-        );
-    */
     }
 
+    /**
+     * Método asíncrono que muestra un toast con un mensaje de error al iniciar sesión
+     */
     async presentToast() {
         const toast = await this.toastController.create({
             message: this.translate.instant('error_login'),

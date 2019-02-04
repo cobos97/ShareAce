@@ -37,8 +37,20 @@ export class AppComponent {
     langmenu: any;
 
     email: any;
-    fecha: any;
 
+    /**
+     * En el constructor inicializo los valores de la aplicación y el idioma
+     * @param platform
+     * @param splashScreen
+     * @param statusBar
+     * @param athService Servicio de autentificación propio de usuarios
+     * @param router Módulo para navegar entre las diferentes páginas
+     * @param nativeStorage Módulo para acceder a la base de datos local
+     * @param translate Módulo de traducción
+     * @param afa Servicio de angular para reconocer al usuario actual
+     * @param alertController Controlador de lal alertas modales
+     * @param menu Controlador del menú
+     */
     constructor(
         private platform: Platform,
         private splashScreen: SplashScreen,
@@ -48,7 +60,7 @@ export class AppComponent {
         private nativeStorage: NativeStorage,
         private translate: TranslateService,
         private afa: AngularFireAuth,
-        private controlerSalir: AlertController,
+        private alertController: AlertController,
         private menu: MenuController
     ) {
         this.initializeApp();
@@ -68,19 +80,18 @@ export class AppComponent {
                     this.translate.use(this.translate.getBrowserLang());
                 }
             }
-            // Here we will check if the user is already logged in
-            // because we don't want to ask users to log in each time they open the app
+
             this.statusBar.styleDefault();
-
-            const d: Date = new Date();
-            this.fecha = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-
 
         });
     }
 
+    /**
+     * Se encarga de mostrar el alert de confirmación al pulsar cerrar ssión en el menú
+     * y de llamar al metodo cerrarSesion() en caso de aceptar
+     */
     async mostrarSalir() {
-        const alert = await this.controlerSalir.create({
+        const alert = await this.alertController.create({
             header: this.translate.instant('close_session'),
             message: this.translate.instant('are_you_sure'),
             buttons: [
@@ -105,6 +116,10 @@ export class AppComponent {
 
     }
 
+    /**
+     * LLama al servicio de autentificación al metodo de cerrar sesión, en caso de éxito llama al método
+     * cierraSesion() y redirige a la página de iniciar sesión.
+     */
     cerrarSesion() {
         console.log('Cierrate');
         this.athService.cerrarSesion()
@@ -115,6 +130,9 @@ export class AppComponent {
             .catch(e => console.log(e));
     }
 
+    /**
+     * Sustituye el valor de la variable sesión en la base de datos local cuando cerramos la sesión
+     */
     cierraSesion() {
         this.nativeStorage.setItem('sesion', 'no')
             .then(
@@ -123,6 +141,10 @@ export class AppComponent {
             );
     }
 
+    /**
+     * Encargado de cambiar el idioma
+     * @param e Evento del cambio de posición del toogle
+     */
     changeLang(e) {
         // console.log(e.detail.checked);
         if (e.detail.checked) {

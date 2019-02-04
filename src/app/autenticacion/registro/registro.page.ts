@@ -17,6 +17,14 @@ export class RegistroPage implements OnInit {
 
     mensaje: any;
 
+    /**
+     *
+     * @param formBuilder Constructor del formulario
+     * @param authService Servicio propio de autenticación de usuarios
+     * @param router Navegación entre páginas
+     * @param toastController Controlador de los toast
+     * @param translate Módulo de traducción
+     */
     constructor(private formBuilder: FormBuilder,
                 private authService: AutenticationService,
                 private router: Router,
@@ -24,6 +32,9 @@ export class RegistroPage implements OnInit {
                 private translate: TranslateService) {
     }
 
+    /**
+     * Inicializa el formulario de registro y pone los campos como obligatorios
+     */
     ngOnInit() {
         this.registroForm = this.formBuilder.group({
             'email': ['', [
@@ -32,19 +43,20 @@ export class RegistroPage implements OnInit {
             ]
             ],
             'password': ['', [
-                Validators.required/*,
-                Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
-                Validators.minLength(6)*/
+                Validators.required
             ]
             ]
         });
-        /*
-        this.registroForm.valueChanges.subscribe(data =>
-            this.onValueChanged(data));
-        this.onValueChanged();
-        */
     }
 
+    /**
+     * Se ejecuta cuando se valida el formulario.
+     * Rellena los datos del usuario llamando al método saveUserdata().
+     * Llama al servicio de autenticación y en caso de éxito llama al método presentToast() con un
+     * mensaje de éxito y redirige a la página de inicio de sesión.
+     * En caso de error llama al método presentToast() con mensaje de error dependiendo del error devuelto
+     * del servicio.
+     */
     onSubmit() {
         this.userdata = this.saveUserdata();
         this.authService.registroUsuario(this.userdata)
@@ -66,6 +78,9 @@ export class RegistroPage implements OnInit {
             });
     }
 
+    /**
+     * Devuelve los datos del usuario tras recogerlos del formulario.
+     */
     saveUserdata() {
         const saveUserdata = {
             email: this.registroForm.get('email').value,
@@ -74,6 +89,10 @@ export class RegistroPage implements OnInit {
         return saveUserdata;
     }
 
+    /**
+     * Método asíncrono que muestra un toast
+     * @param mensaje Mensaje que aparecerá en el toast
+     */
     async presentToast(mensaje) {
         const toast = await this.toastController.create({
             message: mensaje,

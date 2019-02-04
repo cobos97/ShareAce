@@ -14,6 +14,13 @@ export class Tab3Page {
     lugaresPanel = [];
     lugares = [];
 
+    /**
+     * Llama al método que inicializa todos los elementos de la page
+     * @param lugaresS Servicio Propio encargado de hacer las operaciones relacionadas a lugares
+     * @param loadingController Controlador del loading
+     * @param callNumber Plugin nativo para hacer llamadas
+     * @param modalController Controlador de las pages modales
+     */
     constructor(private lugaresS: LugaresService,
                 public loadingController: LoadingController,
                 private callNumber: CallNumber,
@@ -23,10 +30,16 @@ export class Tab3Page {
         this.initializeItems();
     }
 
+    /**
+     * Asigna al lista del panel lo elementos correctos del listado recuperado
+     */
     initializeItems() {
         this.lugaresPanel = this.lugares;
     }
 
+    /**
+     * Recupera los lugares guardados llamando al servicio
+     */
     ionViewDidEnter() {
         this.presentLoading('Cargando');
         this.lugaresS.leeLugares().then(
@@ -42,6 +55,10 @@ export class Tab3Page {
     }
 
 
+    /**
+     * Se encarga de llamar a la aplicación nativa del telefono
+     * @param numero Número al que va a llamar
+     */
     hacerLlamada(numero) {
         console.log(numero);
 
@@ -51,6 +68,12 @@ export class Tab3Page {
 
     }
 
+    /**
+     * Método asíncrono que presenta el modal del mapa
+     * @param mapax Coordenada x del lugar
+     * @param mapay Coordenada y del lugar
+     * @param titulo Título de la localización
+     */
     async mostrarMapa(mapax: any, mapay: any, titulo: any) {
         const modal = await this.modalController.create({
             component: ModalMapaPage,
@@ -59,6 +82,10 @@ export class Tab3Page {
         await modal.present();
     }
 
+    /**
+     * Método para filtrar los elementos del listado de lugares
+     * @param ev Evento del searchbar (cada vez que escribe)
+     */
     getFilteredItem(ev: any) {
         // Reset items back to all of the items
         this.initializeItems();
@@ -75,6 +102,10 @@ export class Tab3Page {
     }
 
 
+    /**
+     * Método asíncrono que muestra el loading
+     * @param msg Mensaje del loading
+     */
     async presentLoading(msg) {
         const myloading = await this.loadingController.create({
             message: msg

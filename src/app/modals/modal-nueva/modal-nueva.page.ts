@@ -3,7 +3,6 @@ import {AlertController, LoadingController, ModalController} from '@ionic/angula
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NuevaServiceService} from '../../services/nueva-service.service';
 
-import * as firebase from 'firebase';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {TranslateService} from '@ngx-translate/core';
 
@@ -17,6 +16,16 @@ export class ModalNuevaPage implements OnInit {
     private nueva: FormGroup;
     private myLoading: any;
 
+    /**
+     * Construye el formulario y pone los campos a obligatorios
+     * @param modalController Controlador de la ventana modal
+     * @param formBuilder Constructor del formulario
+     * @param loadingController Controlador del loading
+     * @param nuevaS Servicio propio para interactuar con Firebase
+     * @param afa Módulo de autenticación de angular
+     * @param alertCtrl Controlador de los alerts
+     * @param translate Módulo de traducción
+     */
     constructor(private modalController: ModalController,
                 private formBuilder: FormBuilder,
                 private loadingController: LoadingController,
@@ -33,9 +42,12 @@ export class ModalNuevaPage implements OnInit {
         console.log('Constructor');
     }
 
-    /* Se ejecuta al submit el formulario. Crea un objeto proveniente del formulario (sería
-    igual que this.todo.value) y llama a la función agregaNota del servicio. Gestiona la
-    Promise para sincronizar la interfaz. */
+
+    /**
+     * Primero recupera los datos del formulario y los engloba en data.
+     * Segundo llama al servicio para agregar la oferta, en caso de éxito muestra la confirmación
+     * y cierra el modal y en caso de error solo cierra el cargando
+     */
     logForm() {
         console.log('Entra');
         const data = {
@@ -46,42 +58,36 @@ export class ModalNuevaPage implements OnInit {
             lugar: this.nueva.get('lugar').value,
             aceptada: []
         };
-        /*
-        console.log('Tipo: ' + data.tipo);
-        console.log('Plazas: ' + data.plazas);
-        console.log('Fecha: ' + data.fecha);
-        */
-        /* Mostramos el cargando... */
+        // Muestra el cargando...
         this.myLoading = this.presentLoading();
         this.nuevaS.agregaOferta(data)
             .then((docRef) => {
                 console.log('ID insertado (por si lo necesitamos para algo...): ', docRef.id);
-                /* Ponemos en blanco los campos del formulario*/
+                // Ponemos en blanco los campos del formulario
                 this.nueva.setValue({
                     tipo: '',
                     plazas: '',
                     fecha: '',
                     lugar: ''
                 });
-                /* Cerramos el cargando...*/
+                // Cerramos el cargando...
                 this.loadingController.dismiss();
-
                 this.mostarConfirmacion();
-
                 this.modalController.dismiss();
-                /*Podríamos ir a la página de listado*/
-                // this.router.navigateByUrl('/tabs/(tab1:tab1)');
+
             })
             .catch((error) => {
                 console.error('Error insertando documento: ', error);
-                /* Cerramos el cargando...*/
+                // Cerramos el cargando...
                 this.loadingController.dismiss();
-                /* Mostramos un mensaje de error */
-                /* A desarrollar, se aconseja emplear un componente denominado toast */
+
             });
     }
 
-    /* Es un componente de la interfaz IONIC v4 */
+
+    /**
+     * Método asíncrono que muestra el cargando...
+     */
     async presentLoading() {
         this.myLoading = await this.loadingController.create({
             message: this.translate.instant('saving')
@@ -92,10 +98,16 @@ export class ModalNuevaPage implements OnInit {
     ngOnInit() {
     }
 
+    /**
+     * Cierra el modal
+     */
     dismiss() {
         this.modalController.dismiss();
     }
 
+    /**
+     * Método asíncrono que muestra un alert de confirmación
+     */
     async mostarConfirmacion() {
         const mensaje = await this.alertCtrl.create({
             header: this.translate.instant('success'),
