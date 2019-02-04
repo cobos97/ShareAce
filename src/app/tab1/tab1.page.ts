@@ -186,6 +186,7 @@ export class Tab1Page implements OnInit {
             plazas: item.plazas - 1,
             fecha: item.fecha,
             ofertante: item.ofertante,
+            lugar: item.lugar,
             aceptada: this.aceptadas
         };
         this.nuevaS.actualizaOferta(item.id, data)
@@ -209,7 +210,7 @@ export class Tab1Page implements OnInit {
                     this.listado.push({id: doc.id, ...doc.data()});
                 });
                 this.listadoPanel = this.listado;
-                this.rellenaAceptadas();
+                // this.rellenaAceptadas();
             }
         );
 

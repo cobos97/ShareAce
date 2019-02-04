@@ -25,7 +25,8 @@ export class ModalNuevaPage implements OnInit {
         this.nueva = this.formBuilder.group({
             tipo: ['', Validators.required],
             plazas: ['', Validators.required],
-            fecha: ['', Validators.required]
+            fecha: ['', Validators.required],
+            lugar: ['', Validators.required]
         });
         console.log('Constructor');
     }
@@ -40,6 +41,7 @@ export class ModalNuevaPage implements OnInit {
             plazas: this.nueva.get('plazas').value,
             fecha: this.nueva.get('fecha').value,
             ofertante: this.afa.auth.currentUser.email,
+            lugar: this.nueva.get('lugar').value,
             aceptada: []
         };
         /*
@@ -56,7 +58,8 @@ export class ModalNuevaPage implements OnInit {
                 this.nueva.setValue({
                     tipo: '',
                     plazas: '',
-                    fecha: ''
+                    fecha: '',
+                    lugar: ''
                 });
                 /* Cerramos el cargando...*/
                 this.loadingController.dismiss();

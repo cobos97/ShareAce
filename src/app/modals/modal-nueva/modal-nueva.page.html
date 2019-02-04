@@ -32,6 +32,10 @@
             <ion-label>{{'date'|translate}}:</ion-label>
             <ion-input type="date" formControlName="fecha"></ion-input>
         </ion-item>
+        <ion-item>
+            <ion-label>{{'place'|translate}}:</ion-label>
+            <ion-input type="text" formControlName="lugar"></ion-input>
+        </ion-item>
         <ion-item float-right="">
             <ion-button shape="round" color="primary" fill="outline" type="submit" [disabled]="!nueva.valid">
                 {{'acept'|translate}}

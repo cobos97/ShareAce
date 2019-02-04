@@ -52,6 +52,7 @@
                             <p>{{'there_is'|translate}} {{item.plazas}} {{'available_seats'|translate}}.</p>
                             <p>{{ 'date' | translate}}:  {{item.fecha}}</p>
                             <p>{{'offered_by'|translate}}: {{item.ofertante}}</p>
+                            <p>{{'place'|translate}}: {{item.lugar}}</p>
                         </ion-label>
                         <ion-icon (click)="aceptarOferta(item)" name="checkmark-circle-outline"
                                   style="font-size:30px"></ion-icon>
@@ -87,7 +88,8 @@
                             <ion-label><h2>{{item.tipo|translate}}</h2>
                                 <p>{{'there_is'|translate}} {{item.plazas}} {{'available_seats'|translate}}.</p>
                                 <p>{{ 'date' | translate}}: {{item.fecha}}</p>
-                                <p>{{'offered_by'|translate}}: {{item.ofertante}}</p></ion-label>
+                                <p>{{'offered_by'|translate}}: {{item.ofertante}}</p>
+                                <p>{{'place'|translate}}: {{item.lugar}}</p></ion-label>
                         </ion-item>
                     </ion-list>
 

@@ -23,6 +23,7 @@
   "acerca_de": "About us",
   "info": "This application has been developed with Ionic 4 in the subject of interface development at the IES Francisco de los Rios (Córdoba)",
   "contacto": "Contact",
-  "error": "This application part is still under development, it will be available soon",
-  "version": "Version"
+  "error": "This part of the application is still under development, will soon be available",
+  "version": "Version",
+  "place": "Place"
 }
