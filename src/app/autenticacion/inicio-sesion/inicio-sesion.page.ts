@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AutenticationService} from '../../services/autentication.service';
 import {Router} from '@angular/router';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
+import {ToastController} from '@ionic/angular';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-inicio-sesion',
@@ -19,7 +21,9 @@ export class InicioSesionPage implements OnInit {
     constructor(private formBuilder: FormBuilder,
                 private authService: AutenticationService,
                 private router: Router,
-                private nativeStorage: NativeStorage) {
+                private nativeStorage: NativeStorage,
+                private toastController: ToastController,
+                private translate: TranslateService) {
     }
 
     ngOnInit() {
@@ -57,6 +61,7 @@ export class InicioSesionPage implements OnInit {
             })
             .catch(e => {
                 console.log(e);
+                this.presentToast();
             });
     }
 
@@ -87,6 +92,14 @@ export class InicioSesionPage implements OnInit {
             error => console.error(error)
         );
     */
+    }
+
+    async presentToast() {
+        const toast = await this.toastController.create({
+            message: this.translate.instant('error_login'),
+            duration: 3000
+        });
+        toast.present();
     }
 
 }

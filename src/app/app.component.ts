@@ -81,17 +81,17 @@ export class AppComponent {
 
     async mostrarSalir() {
         const alert = await this.controlerSalir.create({
-            header: 'Cerrar sesión',
-            message: '¿Esta seguro que desea cerrar la sesión?',
+            header: this.translate.instant('close_session'),
+            message: this.translate.instant('are_you_sure'),
             buttons: [
                 {
-                    text: 'Cancelar',
+                    text: this.translate.instant('cancel'),
                     handler: () => {
                         console.log('Cancelar clicked');
                     }
                 },
                 {
-                    text: 'Aceptar',
+                    text: this.translate.instant('acept'),
                     handler: () => {
                         console.log('Aceptar clicked');
                         this.menu.close();

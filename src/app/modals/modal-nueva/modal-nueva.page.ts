@@ -5,6 +5,7 @@ import {NuevaServiceService} from '../../services/nueva-service.service';
 
 import * as firebase from 'firebase';
 import {AngularFireAuth} from 'angularfire2/auth';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-modal-nueva',
@@ -21,7 +22,8 @@ export class ModalNuevaPage implements OnInit {
                 private loadingController: LoadingController,
                 private nuevaS: NuevaServiceService,
                 private afa: AngularFireAuth,
-                private alertCtrl: AlertController) {
+                private alertCtrl: AlertController,
+                private translate: TranslateService) {
         this.nueva = this.formBuilder.group({
             tipo: ['', Validators.required],
             plazas: ['', Validators.required],
@@ -82,7 +84,7 @@ export class ModalNuevaPage implements OnInit {
     /* Es un componente de la interfaz IONIC v4 */
     async presentLoading() {
         this.myLoading = await this.loadingController.create({
-            message: 'Guardando'
+            message: this.translate.instant('saving')
         });
         return await this.myLoading.present();
     }
@@ -96,11 +98,11 @@ export class ModalNuevaPage implements OnInit {
 
     async mostarConfirmacion() {
         const mensaje = await this.alertCtrl.create({
-            header: 'Exito',
-            message: 'Tu oferta ha sido publicada, espera a que alguien se una a ti',
+            header: this.translate.instant('success'),
+            message: this.translate.instant('success_message'),
             buttons: [
                 {
-                    text: 'Aceptar',
+                    text: this.translate.instant('acept'),
                     handler: () => {
                         console.log('Aceptar clicked');
                     }

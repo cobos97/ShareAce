@@ -15,7 +15,7 @@
 
 <ion-content padding="">
     <ion-searchbar #searchBar id="searchBar" showCancelButton
-                   cancelButtonText="Cancelar" placeholder="Buscar"
+                   cancelButtonText="Cancelar" placeholder="{{'search'|translate}}"
                    (ionInput)="getFilteredItem($event)" (ionClear)="cleared()"
                    (ionCancel)="onCancel()"></ion-searchbar>
     <ion-card padding="" *ngFor="let item of lugaresPanel;let i = index">

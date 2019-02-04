@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {AlertController, IonInfiniteScroll, IonSlides, LoadingController, ModalController} from '@ionic/angular';
+import {AlertController, IonInfiniteScroll, IonSlides, LoadingController, ModalController, ToastController} from '@ionic/angular';
 import {ModalNuevaPage} from '../modals/modal-nueva/modal-nueva.page';
 import {NuevaServiceService} from '../services/nueva-service.service';
 
@@ -54,7 +54,7 @@ export class Tab1Page implements OnInit {
                 private nativeStorage: NativeStorage,
                 private translate: TranslateService,
                 private appComponent: AppComponent,
-                private toast: Toast) {
+                private toastController: ToastController) {
         // translate.setDefaultLang(environment.defaultLanguage);
         this.initializeItems();
     }
@@ -270,14 +270,6 @@ export class Tab1Page implements OnInit {
         return await myloading.present();
     }
 
-    presentToast() {
-        this.toast.show(`Has aceptado la oferta`, '5000', 'center').subscribe(
-            toast => {
-                console.log(toast);
-            }
-        );
-    }
-
 
     async mostarConfirmacion() {
         const mensaje = await this.alertCtrl.create({
@@ -336,6 +328,14 @@ export class Tab1Page implements OnInit {
                 data => console.log(data),
                 error => console.error(error)
             );
+    }
+
+    async presentToast() {
+        const toast = await this.toastController.create({
+            message: this.translate.instant('acept_offer'),
+            duration: 3000
+        });
+        toast.present();
     }
 
 }
