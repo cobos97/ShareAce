@@ -44,5 +44,6 @@
   "if_no": "If you are not registered",
   "click_here": "click here",
   "sign_up": "Sign up",
-  "return": "Return to login"
+  "return": "Return to login",
+  "loading": "Loading"
 }

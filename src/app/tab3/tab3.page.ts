@@ -3,6 +3,7 @@ import {LoadingController, ModalController} from '@ionic/angular';
 import {LugaresService} from '../services/lugares.service';
 import {CallNumber} from '@ionic-native/call-number/ngx';
 import {ModalMapaPage} from '../modals/modal-mapa/modal-mapa.page';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-tab3',
@@ -24,8 +25,8 @@ export class Tab3Page {
     constructor(private lugaresS: LugaresService,
                 public loadingController: LoadingController,
                 private callNumber: CallNumber,
-                private modalController: ModalController
-    ) {
+                private modalController: ModalController,
+                private translate: TranslateService) {
 
         this.initializeItems();
     }
@@ -41,7 +42,7 @@ export class Tab3Page {
      * Recupera los lugares guardados llamando al servicio
      */
     ionViewDidEnter() {
-        this.presentLoading('Cargando');
+        this.presentLoading(this.translate.instant('loading'));
         this.lugaresS.leeLugares().then(
             querySnapshot => {
                 this.lugares = [];

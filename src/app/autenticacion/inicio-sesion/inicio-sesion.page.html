@@ -1,14 +1,14 @@
-<ion-header no-border color="primary">
-  <ion-toolbar color="primary">
+<ion-header no-border style="border-bottom: green 1px solid">
+  <ion-toolbar >
     <ion-title>
-      ShareAce
+      <ion-img src="../../../assets/login.jpg"></ion-img>
+      <h1 align="center">ShareAce</h1>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
 
-  <h1 align="center">ShareAce</h1>
+<ion-content padding>
 
   <form [formGroup]="inicioForm" (ngSubmit)="onSubmit()">
     <ion-item>
@@ -26,6 +26,6 @@
     </ion-item>
   </form>
 
-  <ion-item>{{'if_no'|translate}}, <a href="/registro">{{'click_here'|translate}}</a></ion-item>
+  <ion-item><a href="/registro">{{'if_no'|translate}} {{'click_here'|translate}}</a></ion-item>
 
 </ion-content>

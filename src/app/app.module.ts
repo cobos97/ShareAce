@@ -12,18 +12,19 @@ import {AppComponent} from './app.component';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {environment} from '../environments/environment';
-import { AngularFireAuth } from 'angularfire2/auth';
+import {AngularFireAuth} from 'angularfire2/auth';
 
 import {AutenticationService} from './services/autentication.service';
 import {CallNumber} from '@ionic-native/call-number/ngx';
 
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
 
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {Toast} from '@ionic-native/toast/ngx';
+
 export function setTranslateLoader(http: any) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -36,7 +37,8 @@ export function setTranslateLoader(http: any) {
         IonicModule.forRoot(),
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
-        HttpClientModule, TranslateModule.forRoot({  // Módulo de traducción
+        HttpClientModule,
+        TranslateModule.forRoot({  // Módulo de traducción
             loader: {
                 provide: TranslateLoader,
                 useFactory: (setTranslateLoader),

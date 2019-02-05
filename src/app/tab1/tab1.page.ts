@@ -77,7 +77,7 @@ export class Tab1Page implements OnInit {
      */
     ionViewDidEnter() {
         this.SwipedTabsIndicator = document.getElementById('indicator');
-        this.presentLoading('Cargando');
+        this.presentLoading(this.translate.instant('loading'));
         this.nuevaS.leeOfertasFiltradas().then(
             querySnapshot => {
                 this.listado = [];
