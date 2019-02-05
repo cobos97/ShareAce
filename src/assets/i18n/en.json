@@ -2,10 +2,10 @@
   "date": "Date",
   "changeLang": "Change language",
   "home": "Home",
-  "close_sesion": "Close sesion",
+  "close_sesion": "Log out",
   "offers": "Offers",
   "accepted": "Accepted",
-  "individual": "Individual",
+  "individual": "Single",
   "double": "Double",
   "there_is": "There is",
   "available_seats": "available seats",
@@ -15,7 +15,7 @@
   "new_offer": "New offer",
   "choose_one": "Choose one",
   "number_of_places": "Number of places",
-  "acept": "To acept",
+  "acept": "Acept",
   "cancel": "Cancel",
   "Individual": "Single",
   "Dobles": "Double",
@@ -45,5 +45,6 @@
   "click_here": "click here",
   "sign_up": "Sign up",
   "return": "Return to login",
-  "loading": "Loading"
+  "loading": "Loading",
+  "saving": "Saving"
 }

@@ -44,5 +44,6 @@
     "click_here": "pulse aquí",
     "sign_up": "Registrate",
     "return": "Volver al inicio de sesión",
-    "loading": "Cargando"
+    "loading": "Cargando",
+    "saving": "Guardando"
     }

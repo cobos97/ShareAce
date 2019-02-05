@@ -155,6 +155,7 @@ export class Tab1Page implements OnInit {
      */
     aceptarOferta(item: any) {
 
+        this.presentLoading(this.translate.instant('saving'));
         this.aceptadas = item.aceptada;
         this.aceptadas.push(this.afa.auth.currentUser.email);
 
@@ -173,7 +174,7 @@ export class Tab1Page implements OnInit {
             .then(() => {
                 console.log('ID insertado (por si lo necesitamos para algo...): ', item.id);
                 this.aceptadas = [];
-
+                this.presentToast();
             })
             .catch((error) => {
                 console.error('Error insertando documento: ', error);
@@ -192,7 +193,7 @@ export class Tab1Page implements OnInit {
         );
 
         this.rellenaAceptadas();
-        this.presentToast();
+        this.loadingController.dismiss();
     }
 
 
