@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AutenticationService} from '../../services/autentication.service';
 import {Router} from '@angular/router';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
-import {ToastController} from '@ionic/angular';
+import {MenuController, ToastController} from '@ionic/angular';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
@@ -32,7 +32,12 @@ export class InicioSesionPage implements OnInit {
                 private router: Router,
                 private nativeStorage: NativeStorage,
                 private toastController: ToastController,
-                private translate: TranslateService) {
+                private translate: TranslateService,
+                private menuController: MenuController) {
+    }
+
+    ionViewDidEnter() {
+        this.menuController.enable(false);
     }
 
     /**
@@ -124,6 +129,19 @@ export class InicioSesionPage implements OnInit {
             duration: 3000
         });
         toast.present();
+    }
+
+    /**
+     * Encargado de cambiar el idioma
+     * @param e Evento del cambio de posición del toogle
+     */
+    changeLang(e) {
+        // console.log(e.detail.checked);
+        if (e.detail.checked) {
+            this.translate.use('en');
+        } else {
+            this.translate.use('es');
+        }
     }
 
 }

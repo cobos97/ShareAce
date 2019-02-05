@@ -1,5 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {AlertController, IonInfiniteScroll, IonSlides, LoadingController, ModalController, ToastController} from '@ionic/angular';
+import {
+    AlertController,
+    IonInfiniteScroll,
+    IonSlides,
+    LoadingController,
+    MenuController,
+    ModalController,
+    ToastController
+} from '@ionic/angular';
 import {ModalNuevaPage} from '../modals/modal-nueva/modal-nueva.page';
 import {NuevaServiceService} from '../services/nueva-service.service';
 
@@ -62,7 +70,9 @@ export class Tab1Page implements OnInit {
                 private nativeStorage: NativeStorage,
                 private translate: TranslateService,
                 private appComponent: AppComponent,
-                private toastController: ToastController) {
+                private toastController: ToastController,
+                private menuController: MenuController) {
+        this.menuController.enable(true);
         this.initializeItems();
     }
 

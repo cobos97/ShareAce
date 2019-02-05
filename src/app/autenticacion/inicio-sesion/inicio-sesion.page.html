@@ -28,4 +28,9 @@
 
   <ion-item><a href="/registro">{{'if_no'|translate}} {{'click_here'|translate}}</a></ion-item>
 
+  <ion-item>
+    <ion-label style="font-size:0.95rem">{{"changeLang" | translate}}</ion-label>
+    <ion-toggle slot="end" (ionChange)="changeLang($event)"></ion-toggle>
+  </ion-item>
+
 </ion-content>
