@@ -41,9 +41,9 @@
                 <ion-refresher (ionRefresh)="doRefresh($event)">
                     <ion-refresher-content
                             pullingIcon="arrow-dropdown"
-                            pullingText="Arrastra para refrescar"
+                            pullingText="{{'drop'|translate}}"
                             refreshingSpinner="crescent"
-                            refreshingText="Cargando...">
+                            refreshingText="{{'loading'|translate}}...">
                     </ion-refresher-content>
                 </ion-refresher>
                 <ion-list #dynamicList id="dynamicList">
