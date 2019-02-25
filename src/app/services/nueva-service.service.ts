@@ -20,6 +20,7 @@ export class NuevaServiceService {
     /**
      * Agraga un documento a la coleccion de ofertas y devuelve un promise
      * @param datos Datos del documento
+     * @returns Promise de respuesta de inserción en la base de datos
      */
     agregaOferta(datos) {
         return this.myCollection.add(datos);
@@ -28,6 +29,7 @@ export class NuevaServiceService {
     /**
      * Devuelve un promise con todos los datos de la coleccion ofertas filtrados
      * (plazas positivas y ordenados por fecha)
+     * @returns Prmise con la coleccioón de ofertas con los datos filtrados
      */
     leeOfertasFiltradas() {
         return this.myCollection.ref.where('plazas', '>', 0).orderBy('plazas').orderBy('fecha').get();
@@ -35,6 +37,7 @@ export class NuevaServiceService {
 
     /**
      * Devuelve un promise con todos los datos de la coleccion ofertas sin filtrar
+     * @returns Prmise con la coleccioón de ofertas
      */
     leeOfertasAceptadas() {
         return this.myCollection.ref.get();
@@ -44,6 +47,7 @@ export class NuevaServiceService {
      * Actualiza un documento de la colección ofertas
      * @param id Id del documento anterior
      * @param data Datos del nuevo documento
+     * @returns Promise de consulta udpate en Firebase
      */
     actualizaOferta(id, data) {
         return this.myCollection.doc(id).set(data);

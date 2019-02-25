@@ -20,6 +20,7 @@ export class LugaresService {
 
     /**
      * Devuelve un promise con todos los datos de la colección de lugares
+     * @returns Promise con la colección de lugares de Firebase
      */
     leeLugares() {
         return this.myCollection.ref.get();
