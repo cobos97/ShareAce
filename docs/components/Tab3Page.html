@@ -1,0 +1,1092 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ShareAce documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">ShareAce documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>Tab3Page</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/tab3/tab3.page.ts</code>
+</p>
+
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-tab3</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>tab3.page.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>tab3.page.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#loadingController">loadingController</a>
+                            </li>
+                            <li>
+                                <a href="#lugares">lugares</a>
+                            </li>
+                            <li>
+                                <a href="#lugaresPanel">lugaresPanel</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getFilteredItem">getFilteredItem</a>
+                            </li>
+                            <li>
+                                <a href="#hacerLlamada">hacerLlamada</a>
+                            </li>
+                            <li>
+                                <a href="#initializeItems">initializeItems</a>
+                            </li>
+                            <li>
+                                <a href="#ionViewDidEnter">ionViewDidEnter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#mostrarMapa">mostrarMapa</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#presentLoading">presentLoading</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(lugaresS: <a href="../injectables/LugaresService.html">LugaresService</a>, loadingController: LoadingController, callNumber: CallNumber, modalController: ModalController, translate: TranslateService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/tab3/tab3.page.ts:16</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Llama al método que inicializa todos los elementos de la page</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>lugaresS</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LugaresService.html" target="_self" >LugaresService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Servicio Propio encargado de hacer las operaciones relacionadas a lugares</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>loadingController</td>
+                                                  
+                                                        <td>
+                                                                    <code>LoadingController</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Controlador del loading</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>callNumber</td>
+                                                  
+                                                        <td>
+                                                                    <code>CallNumber</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Plugin nativo para hacer llamadas</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>modalController</td>
+                                                  
+                                                        <td>
+                                                                    <code>ModalController</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Controlador de las pages modales</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>translate</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFilteredItem"></a>
+                    <span class="name">
+                        <b>
+                            getFilteredItem
+                        </b>
+                        <a href="#getFilteredItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFilteredItem(ev: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/app/tab3/tab3.page.ts:90</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Método para filtrar los elementos del listado de lugares</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ev</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Evento del searchbar (cada vez que escribe)</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hacerLlamada"></a>
+                    <span class="name">
+                        <b>
+                            hacerLlamada
+                        </b>
+                        <a href="#hacerLlamada"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>hacerLlamada(numero)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/app/tab3/tab3.page.ts:63</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Se encarga de llamar a la aplicación nativa del telefono</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>numero</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Número al que va a llamar</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializeItems"></a>
+                    <span class="name">
+                        <b>
+                            initializeItems
+                        </b>
+                        <a href="#initializeItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initializeItems()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/app/tab3/tab3.page.ts:37</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Asigna al lista del panel lo elementos correctos del listado recuperado</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ionViewDidEnter"></a>
+                    <span class="name">
+                        <b>
+                            ionViewDidEnter
+                        </b>
+                        <a href="#ionViewDidEnter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ionViewDidEnter()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/app/tab3/tab3.page.ts:44</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Recupera los lugares guardados llamando al servicio</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mostrarMapa"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            mostrarMapa
+                        </b>
+                        <a href="#mostrarMapa"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>mostrarMapa(mapax: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, mapay: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, titulo: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/app/tab3/tab3.page.ts:78</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Método asíncrono que presenta el modal del mapa</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>mapax</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Coordenada x del lugar</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>mapay</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Coordenada y del lugar</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>titulo</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Título de la localización</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="presentLoading"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            presentLoading
+                        </b>
+                        <a href="#presentLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>presentLoading(msg)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/app/tab3/tab3.page.ts:110</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Método asíncrono que muestra el loading</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>msg</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Mensaje del loading</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadingController"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            loadingController</b>
+                            <a href="#loadingController"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>LoadingController</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/tab3/tab3.page.ts:26</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">Controlador del loading</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="lugares"></a>
+                        <span class="name">
+                            <b>
+                            lugares</b>
+                            <a href="#lugares"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/tab3/tab3.page.ts:16</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="lugaresPanel"></a>
+                        <span class="name">
+                            <b>
+                            lugaresPanel</b>
+                            <a href="#lugaresPanel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/tab3/tab3.page.ts:15</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component} from &#x27;@angular/core&#x27;;
+import {LoadingController, ModalController} from &#x27;@ionic/angular&#x27;;
+import {LugaresService} from &#x27;../services/lugares.service&#x27;;
+import {CallNumber} from &#x27;@ionic-native/call-number/ngx&#x27;;
+import {ModalMapaPage} from &#x27;../modals/modal-mapa/modal-mapa.page&#x27;;
+import {TranslateService} from &#x27;@ngx-translate/core&#x27;;
+
+@Component({
+    selector: &#x27;app-tab3&#x27;,
+    templateUrl: &#x27;tab3.page.html&#x27;,
+    styleUrls: [&#x27;tab3.page.scss&#x27;]
+})
+export class Tab3Page {
+
+    lugaresPanel &#x3D; [];
+    lugares &#x3D; [];
+
+    /**
+     * Llama al método que inicializa todos los elementos de la page
+     * @param lugaresS Servicio Propio encargado de hacer las operaciones relacionadas a lugares
+     * @param loadingController Controlador del loading
+     * @param callNumber Plugin nativo para hacer llamadas
+     * @param modalController Controlador de las pages modales
+     */
+    constructor(private lugaresS: LugaresService,
+                public loadingController: LoadingController,
+                private callNumber: CallNumber,
+                private modalController: ModalController,
+                private translate: TranslateService) {
+
+        this.initializeItems();
+    }
+
+    /**
+     * Asigna al lista del panel lo elementos correctos del listado recuperado
+     */
+    initializeItems() {
+        this.lugaresPanel &#x3D; this.lugares;
+    }
+
+    /**
+     * Recupera los lugares guardados llamando al servicio
+     */
+    ionViewDidEnter() {
+        this.presentLoading(this.translate.instant(&#x27;loading&#x27;));
+        this.lugaresS.leeLugares().then(
+            querySnapshot &#x3D;&gt; {
+                this.lugares &#x3D; [];
+                querySnapshot.forEach((doc) &#x3D;&gt; {
+                    this.lugares.push({id: doc.id, ...doc.data()});
+                });
+                this.lugaresPanel &#x3D; this.lugares;
+                this.loadingController.dismiss();
+            }
+        );
+    }
+
+
+    /**
+     * Se encarga de llamar a la aplicación nativa del telefono
+     * @param numero Número al que va a llamar
+     */
+    hacerLlamada(numero) {
+        console.log(numero);
+
+        this.callNumber.callNumber(numero, true)
+            .then(() &#x3D;&gt; console.log(&#x27;Launched dialer!&#x27;))
+            .catch(() &#x3D;&gt; console.log(&#x27;Error launching dialer&#x27;));
+
+    }
+
+    /**
+     * Método asíncrono que presenta el modal del mapa
+     * @param mapax Coordenada x del lugar
+     * @param mapay Coordenada y del lugar
+     * @param titulo Título de la localización
+     */
+    async mostrarMapa(mapax: any, mapay: any, titulo: any) {
+        const modal &#x3D; await this.modalController.create({
+            component: ModalMapaPage,
+            componentProps: {mapax: mapax, mapay: mapay, titulo: titulo}
+        });
+        await modal.present();
+    }
+
+    /**
+     * Método para filtrar los elementos del listado de lugares
+     * @param ev Evento del searchbar (cada vez que escribe)
+     */
+    getFilteredItem(ev: any) {
+        // Reset items back to all of the items
+        this.initializeItems();
+
+        // set val to the value of the searchbar
+        const val &#x3D; ev.target.value;
+
+        // if the value is an empty string don&#x27;t filter the items
+        if (val &amp;&amp; val.trim() !&#x3D; &#x27;&#x27;) {
+            this.lugaresPanel &#x3D; this.lugaresPanel.filter((item) &#x3D;&gt; {
+                return (item.localizacion.toLowerCase().indexOf(val.toLowerCase()) &gt; -1);
+            });
+        }
+    }
+
+
+    /**
+     * Método asíncrono que muestra el loading
+     * @param msg Mensaje del loading
+     */
+    async presentLoading(msg) {
+        const myloading &#x3D; await this.loadingController.create({
+            message: msg
+        });
+        return await myloading.present();
+    }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ion-header no-border color&#x3D;&quot;primary&quot;&gt;
+    &lt;ion-toolbar color&#x3D;&quot;primary&quot;&gt;
+        &lt;ion-buttons slot&#x3D;&quot;start&quot;&gt;
+            &lt;ion-menu-toggle&gt;
+                &lt;ion-button&gt;
+                    &lt;ion-icon name&#x3D;&quot;menu&quot; slot&#x3D;&quot;icon-only&quot;&gt;&lt;/ion-icon&gt;
+                &lt;/ion-button&gt;
+            &lt;/ion-menu-toggle&gt;
+        &lt;/ion-buttons&gt;
+        &lt;ion-title&gt;
+            ShareAce
+        &lt;/ion-title&gt;
+    &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content padding&#x3D;&quot;&quot;&gt;
+    &lt;ion-searchbar #searchBar id&#x3D;&quot;searchBar&quot; showCancelButton
+                   cancelButtonText&#x3D;&quot;Cancelar&quot; placeholder&#x3D;&quot;{{&#x27;search&#x27;|translate}}&quot;
+                   (ionInput)&#x3D;&quot;getFilteredItem($event)&quot; (ionClear)&#x3D;&quot;cleared()&quot;
+                   (ionCancel)&#x3D;&quot;onCancel()&quot;&gt;&lt;/ion-searchbar&gt;
+    &lt;ion-card padding&#x3D;&quot;&quot; *ngFor&#x3D;&quot;let item of lugaresPanel;let i &#x3D; index&quot;&gt;
+        &lt;ion-title&gt;{{item.localizacion}}&lt;/ion-title&gt;
+        &lt;ion-img  style&#x3D;&quot;margin:auto&quot; [src]&#x3D;&quot;item.imagen&quot;&gt;&lt;/ion-img&gt;
+        &lt;ion-buttons float-right padding-bottom&#x3D;&quot;5px&quot; padding-end&#x3D;&quot;5px&quot;&gt;
+            &lt;ion-button (click)&#x3D;&quot;mostrarMapa(item.mapax, item.mapay, item.localizacion)&quot;&gt;
+                &lt;ion-icon name&#x3D;&quot;locate&quot; style&#x3D;&quot;font-size:30px&quot;&gt;&lt;/ion-icon&gt;
+            &lt;/ion-button&gt;
+            &lt;ion-button (click)&#x3D;&quot;hacerLlamada(item.telefono)&quot;&gt;
+                &lt;ion-icon name&#x3D;&quot;call&quot; style&#x3D;&quot;font-size:30px&quot;&gt;&lt;/ion-icon&gt;
+            &lt;/ion-button&gt;
+        &lt;/ion-buttons&gt;
+    &lt;/ion-card&gt;
+&lt;/ion-content&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>tab3.page.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-header no-border color="primary">    <ion-toolbar color="primary">        <ion-buttons slot="start">            <ion-menu-toggle>                <ion-button>                    <ion-icon name="menu" slot="icon-only"></ion-icon>                </ion-button>            </ion-menu-toggle>        </ion-buttons>        <ion-title>            ShareAce        </ion-title>    </ion-toolbar></ion-header><ion-content padding="">    <ion-searchbar #searchBar id="searchBar" showCancelButton                   cancelButtonText="Cancelar" placeholder="{{\'search\'|translate}}"                   (ionInput)="getFilteredItem($event)" (ionClear)="cleared()"                   (ionCancel)="onCancel()"></ion-searchbar>    <ion-card padding="" *ngFor="let item of lugaresPanel;let i = index">        <ion-title>{{item.localizacion}}</ion-title>        <ion-img  style="margin:auto" [src]="item.imagen"></ion-img>        <ion-buttons float-right padding-bottom="5px" padding-end="5px">            <ion-button (click)="mostrarMapa(item.mapax, item.mapay, item.localizacion)">                <ion-icon name="locate" style="font-size:30px"></ion-icon>            </ion-button>            <ion-button (click)="hacerLlamada(item.telefono)">                <ion-icon name="call" style="font-size:30px"></ion-icon>            </ion-button>        </ion-buttons>    </ion-card></ion-content></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AyudaPage', 'selector': 'app-ayuda'},{'name': 'InicioSesionPage', 'selector': 'app-inicio-sesion'},{'name': 'ModalMapaPage', 'selector': 'app-modal-mapa'},{'name': 'ModalNuevaPage', 'selector': 'app-modal-nueva'},{'name': 'RegistroPage', 'selector': 'app-registro'},{'name': 'Tab1Page', 'selector': 'app-tab1'},{'name': 'Tab2Page', 'selector': 'app-tab2'},{'name': 'Tab3Page', 'selector': 'app-tab3'},{'name': 'TabsPage', 'selector': 'app-tabs'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'Tab3Page'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'Tab3Page.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
