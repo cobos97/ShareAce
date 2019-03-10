@@ -32,6 +32,7 @@ const routes: Routes = [
       }
     })
   ],
-  declarations: [ModalMapaPage]
+  declarations: [// ModalMapaPage
+  ]
 })
 export class ModalMapaPageModule {}

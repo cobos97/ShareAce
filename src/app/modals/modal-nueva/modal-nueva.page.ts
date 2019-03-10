@@ -13,8 +13,11 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class ModalNuevaPage implements OnInit {
 
-    private nueva: FormGroup;
+    public nueva: FormGroup;
     private myLoading: any;
+
+    public individual: any;
+    public dobles: any;
 
     /**
      * Construye el formulario y pone los campos a obligatorios

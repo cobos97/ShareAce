@@ -15,6 +15,9 @@ export class Tab3Page {
     lugaresPanel = [];
     lugares = [];
 
+    public cleared: any;
+    public onCancel: any;
+
     /**
      * Llama al método que inicializa todos los elementos de la page
      * @param lugaresS Servicio Propio encargado de hacer las operaciones relacionadas a lugares

@@ -33,7 +33,8 @@ const routes: Routes = [
             }
         })
     ],
-    declarations: [ModalNuevaPage]
+    declarations: [// ModalNuevaPage
+    ]
 })
 export class ModalNuevaPageModule {
 }
