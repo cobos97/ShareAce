@@ -24,6 +24,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {Toast} from '@ionic-native/toast/ngx';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 export function setTranslateLoader(http: any) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -45,7 +46,8 @@ export function setTranslateLoader(http: any) {
                 deps: [HttpClient]
             }
         }),
-        AngularFirestoreModule],
+        AngularFirestoreModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
     providers: [
         StatusBar,
         SplashScreen,
